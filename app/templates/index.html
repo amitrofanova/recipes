@@ -2,6 +2,21 @@
 
 {% block content %}
     <h1>Hi, {{ current_user.username }}!</h1>
+
+    {% if form %}
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.title.label }}<br>
+            {{ form.title(cols=32, rows=4) }}<br>
+            {% for error in form.title.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    {% endif %}
+
     {% for recipe in recipes %}
     <div><p>{{ recipe.author.username }} says: <b>{{ recipe.title }}</b></p></div>
     {% endfor %}
