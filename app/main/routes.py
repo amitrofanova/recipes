@@ -1,0 +1,47 @@
+from flask import render_template, flash, redirect, url_for, request
+from flask_login import current_user, login_required
+from app import db
+from app.main.forms import EditProfileForm, NewRecipeForm
+from app.models import User, Recipe
+from app.main import bp
+
+
+@bp.route('/', methods=['GET', 'POST'])
+@bp.route('/index', methods=['GET', 'POST'])
+@login_required
+def index():
+    form = NewRecipeForm()
+    if form.validate_on_submit():
+        recipe = Recipe(title=form.title.data, author=current_user)
+        db.session.add(recipe)
+        db.session.commit()
+        flash('Your recipe has been saved!')
+        return redirect(url_for('main.index'))
+    recipes = current_user.recipes
+
+    return render_template('index.html', title='Home', form=form, recipes=recipes)
+
+
+@bp.route('/user/<username>')
+@login_required
+def user(username):
+    user = User.query.filter_by(username=username).first_or_404()
+    recipes = current_user.recipes
+
+    return render_template('user.html', user=user, recipes=recipes)
+
+
+@bp.route('/edit_profile', methods=['GET', 'POST'])
+@login_required
+def edit_profile():
+    form = EditProfileForm(current_user.username)
+    if form.validate_on_submit():
+        current_user.username = form.username.data
+        db.session.commit()
+        flash('Your changes have been saved.')
+        return redirect(url_for('main.edit_profile'))
+    elif request.method == 'GET':
+        form.username.data = current_user.username
+
+    return render_template('edit_profile.html', title='Edit Profile',
+                           form=form)
