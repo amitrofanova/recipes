@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_required
 from app import db
 from app.main.forms import EditProfileForm, NewRecipeForm
-from app.models import User, Recipe
+from app.models import User, Recipe, DishType
 from app.main import bp
 
 
@@ -11,8 +11,13 @@ from app.main import bp
 @login_required
 def index():
     form = NewRecipeForm()
+    form.dish_type.choices = [(t.id, t.name) for t in DishType.query.all()]
     if form.validate_on_submit():
-        recipe = Recipe(title=form.title.data, author=current_user)
+        print(form.dish_type.data)
+        recipe = Recipe(title=form.title.data,
+                        description=form.description.data,
+                        user_id=current_user.id,
+                        dish_type_id=form.dish_type.data)
         db.session.add(recipe)
         db.session.commit()
         flash('Your recipe has been saved!')
