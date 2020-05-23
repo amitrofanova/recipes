@@ -23,7 +23,6 @@ class NewRecipeForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired(), Length(min=1, max=140)])
     description = TextAreaField('Description')
     dish_type = SelectField('Dish type', coerce=int)
-    # ingredient = StringField('Add Ingredient', validators=[DataRequired(), Length(min=1, max=140)])
+    ingredient = StringField('Add Ingredient', validators=[DataRequired(), Length(min=1, max=140)])
     # step = StringField('Add Step', validators=[DataRequired(), Length(min=1, max=140)])
     submit = SubmitField('Submit')
-

@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_required
 from app import db
 from app.main.forms import EditProfileForm, NewRecipeForm
-from app.models import User, Recipe, DishType
+from app.models import User, Recipe, DishType, Ingredient
 from app.main import bp
 
 
@@ -12,16 +12,21 @@ from app.main import bp
 def index():
     form = NewRecipeForm()
     form.dish_type.choices = [(t.id, t.name) for t in DishType.query.all()]
+
     if form.validate_on_submit():
-        print(form.dish_type.data)
         recipe = Recipe(title=form.title.data,
                         description=form.description.data,
                         user_id=current_user.id,
                         dish_type_id=form.dish_type.data)
         db.session.add(recipe)
+
+        ingredients = Ingredient(name=form.ingredient.data, recipe=recipe)
+        db.session.add(ingredients)
         db.session.commit()
+
         flash('Your recipe has been saved!')
         return redirect(url_for('main.index'))
+
     recipes = current_user.recipes
 
     return render_template('index.html', title='Home', form=form, recipes=recipes)

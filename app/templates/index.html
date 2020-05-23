@@ -24,14 +24,18 @@
             {{ form.dish_type.label }}<br>
             {{ form.dish_type }}<br>
         </p>
+        <p>
+            {{ form.ingredient.label }}<br>
+            {{ form.ingredient(cols=32, rows=4) }}<br>
+            {% for error in form.ingredient.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
         <p>{{ form.submit() }}</p>
     </form>
     {% endif %}
 
     {% for recipe in recipes %}
-    <div>{{ recipe.author.username }} says:
-        <b>{{ recipe.title }}</b>
-        <p>{{ recipe.description }}</p>
-    </div>
+        {% include '_recipe.html' %}
     {% endfor %}
 {% endblock %}

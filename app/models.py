@@ -59,8 +59,8 @@ class Recipe(db.Model):
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     dish_type_id = db.Column(db.Integer, db.ForeignKey('dish_type.id'))
-    # ingredients = db.relationship('Ingredient', backref='recipe')
-    # steps = db.relationship('Step', backref='recipe')
+    ingredients = db.relationship('Ingredient', backref='recipe', lazy='dynamic')
+    steps = db.relationship('Step', backref='recipe')
     # image = db.Column(db.String())
     # image_hash = db.Column(db.String())
     # image_min = db.Column(db.String())
@@ -70,13 +70,13 @@ class Recipe(db.Model):
         return '<Recipe {}>'.format(self.title)
 
 
-# class Ingredient(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.id'))
-#     name = db.Column(db.String())
-#
-#
-# class Step(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.id'))
-#     name = db.Column(db.String())
+class Ingredient(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.id'))
+    name = db.Column(db.String())
+
+
+class Step(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.id'))
+    name = db.Column(db.String())
