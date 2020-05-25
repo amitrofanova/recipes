@@ -10,6 +10,7 @@
     <body>
         <div>Recipe Book:
             <a href="{{ url_for('main.index') }}">Home</a>
+            <a href="{{ url_for('main.add_recipe') }}">Add recipe</a>
             {% if current_user.is_anonymous %}
             <a href="{{ url_for('auth.login') }}">Login</a>
             {% else %}

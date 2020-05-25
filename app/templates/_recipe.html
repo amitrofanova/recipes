@@ -5,13 +5,13 @@
                 <h4>{{ recipe.title }}</h4>
                 {{ recipe.description }}
                 <p>Dish type: {{ recipe.dish_type.name }}</p>
-                <h3>Ingredients:</h3>
+                Ingredients:
                 <ul>
                     {% for i in recipe.ingredients %}
                     <li>{{ i.name }}</li>
                     {% endfor %}
                 </ul>
-                <h3>Steps:</h3>
+                Steps:
                 <ul>
                     {% for i in recipe.steps %}
                     <li>{{ i.name }}</li>

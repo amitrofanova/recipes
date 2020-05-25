@@ -70,3 +70,41 @@ def edit_profile():
 
     return render_template('edit_profile.html', title='Edit Profile',
                            form=form)
+
+
+@bp.route('/add_recipe', methods=['GET', 'POST'])
+@login_required
+def add_recipe():
+    form = NewRecipeForm()
+    form.dish_type.choices = [(t.id, t.name) for t in DishType.query.all()]
+
+    if form.validate_on_submit():
+        recipe = Recipe(title=form.title.data,
+                        description=form.description.data,
+                        user_id=current_user.id,
+                        dish_type_id=form.dish_type.data)
+        db.session.add(recipe)
+
+        ingredients = []
+        for d in form.ingredients.data.split(';'):
+            d = d.strip()
+            if d != '':
+                ingredients.append(d)
+        for i in ingredients:
+            ingredient = Ingredient(name=i, recipe=recipe)
+            db.session.add(ingredient)
+
+        steps = []
+        for d in form.steps.data.split(';'):
+            d = d.strip()
+            if d != '':
+                steps.append(d)
+        for i in steps:
+            step = Step(name=i, recipe=recipe)
+            db.session.add(step)
+
+        db.session.commit()
+        flash('Your recipe has been saved!')
+        return redirect(url_for('main.index'))
+
+    return render_template('add_recipe.html', title='Add recipe', form=form)
