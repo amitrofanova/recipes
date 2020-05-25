@@ -12,7 +12,7 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
-    recipes = db.relationship('Recipe', backref='author', lazy='dynamic')
+    recipes = db.relationship('Recipe', backref='author')
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
@@ -45,8 +45,8 @@ def load_user(id):
 
 class DishType(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(140))
-    recipes = db.relationship('Recipe', backref='dish_type', lazy='dynamic')
+    name = db.Column(db.String(140), nullable=False, unique=True)
+    recipes = db.relationship('Recipe', backref='dish_type')
 
     def __repr__(self):
         return '<DishType {}>'.format(self.name)
@@ -54,17 +54,17 @@ class DishType(db.Model):
 
 class Recipe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(140))
+    title = db.Column(db.String(140), nullable=False)
     description = db.Column(db.String())
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='cascade'), nullable=False)
     dish_type_id = db.Column(db.Integer, db.ForeignKey('dish_type.id'))
-    ingredients = db.relationship('Ingredient', backref='recipe', lazy='dynamic')
+    ingredients = db.relationship('Ingredient', backref='recipe')
     steps = db.relationship('Step', backref='recipe')
-    # image = db.Column(db.String())
-    # image_hash = db.Column(db.String())
-    # image_min = db.Column(db.String())
-    # image_min_hash = db.Column(db.String())
+    image = db.Column(db.String())
+    image_hash = db.Column(db.String())
+    image_min = db.Column(db.String())
+    image_min_hash = db.Column(db.String())
 
     def __repr__(self):
         return '<Recipe {}>'.format(self.title)
@@ -72,11 +72,11 @@ class Recipe(db.Model):
 
 class Ingredient(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.id'))
+    recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.id', ondelete='cascade'), nullable=False)
     name = db.Column(db.String())
 
 
 class Step(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.id'))
-    name = db.Column(db.String())
+    recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.id', ondelete='cascade'), nullable=False)
+    name = db.Column(db.String())  # rename to "content"

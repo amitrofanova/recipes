@@ -25,9 +25,16 @@
             {{ form.dish_type }}<br>
         </p>
         <p>
-            {{ form.ingredient.label }}<br>
-            {{ form.ingredient(cols=32, rows=4) }}<br>
-            {% for error in form.ingredient.errors %}
+            {{ form.ingredients.label }}<br>
+            {{ form.ingredients(cols=50, rows=4) }}<br>
+            {% for error in form.ingredients.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.steps.label }}<br>
+            {{ form.steps(cols=50, rows=4) }}<br>
+            {% for error in form.steps.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>

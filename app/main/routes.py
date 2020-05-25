@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_required
 from app import db
 from app.main.forms import EditProfileForm, NewRecipeForm
-from app.models import User, Recipe, DishType, Ingredient
+from app.models import User, Recipe, DishType, Ingredient, Step
 from app.main import bp
 
 
@@ -20,10 +20,25 @@ def index():
                         dish_type_id=form.dish_type.data)
         db.session.add(recipe)
 
-        ingredients = Ingredient(name=form.ingredient.data, recipe=recipe)
-        db.session.add(ingredients)
-        db.session.commit()
+        ingredients = []
+        for d in form.ingredients.data.split(';'):
+            d = d.strip()
+            if d != '':
+                ingredients.append(d)
+        for i in ingredients:
+            ingredient = Ingredient(name=i, recipe=recipe)
+            db.session.add(ingredient)
 
+        steps = []
+        for d in form.steps.data.split(';'):
+            d = d.strip()
+            if d != '':
+                steps.append(d)
+        for i in steps:
+            step = Step(name=i, recipe=recipe)
+            db.session.add(step)
+
+        db.session.commit()
         flash('Your recipe has been saved!')
         return redirect(url_for('main.index'))
 
