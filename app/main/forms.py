@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SubmitField, SelectField
+from wtforms import StringField, TextAreaField, SelectField, SubmitField, HiddenField
+from wtforms.fields.html5 import SearchField
 from wtforms.validators import ValidationError, DataRequired, Length
 from app.models import User
 
@@ -25,4 +26,14 @@ class NewRecipeForm(FlaskForm):
     dish_type = SelectField('Dish type', coerce=int)
     ingredients = TextAreaField('Add Ingredients (please use semicolon as separator)')
     steps = TextAreaField('Add Steps (please use semicolon as separator)')
+    submit = SubmitField('Submit')
+
+
+class SearchRecipeToDelete(FlaskForm):
+    recipe_to_delete = SearchField('Search')
+    submit = SubmitField('Submit')
+
+
+class DeleteRecipeForm(FlaskForm):
+    form_id = HiddenField('Form_id')
     submit = SubmitField('Submit')

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% for i in range(0, recipes_count) %}
+    <form action="" method="post">
+        <!-- https://www.reddit.com/r/flask/comments/86yf1t/af_multiple_of_the_same_wtforms_form_on_one_page/ -->
+        {{ form.csrf_token() }}
+        {{ form.form_id(value=i) }}
+        <div>
+            id={{ search_result[i].id }}<br>
+            recipe_name={{ search_result[i].title }}
+        </div>
+        <p>{{ form.submit() }}</p>
+    </form>
+    {% endfor %}
+{% endblock %}
