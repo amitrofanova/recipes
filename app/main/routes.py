@@ -91,20 +91,15 @@ def dashboard():
 @bp.route('/delete_recipe/<search_string>', methods=['GET', 'POST'])
 @login_required
 def delete_recipe(search_string):
-
-    # search_result = [(r.id, r.title) for r in Recipe.query.filter_by(title=search_string).all()]
     search_result = Recipe.query.filter_by(title=search_string).all()
     recipes_count = len(search_result)
     form = DeleteRecipeForm()
 
     if form.validate_on_submit():
         form_id = int(form.form_id.data)
-        print('form_id=', form_id)
-        print(search_result[form_id].id)
 
-        recipe_to_delete = Recipe.query.filter_by(id=search_result[form_id].id).first()
-        print(recipe_to_delete)
-        db.session.delete(recipe_to_delete)
+        Recipe.query.filter_by(id=search_result[form_id].id).delete()
+        
         db.session.commit()
         return redirect(url_for('main.index'))
 
