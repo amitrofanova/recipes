@@ -26,14 +26,14 @@ class NewRecipeForm(FlaskForm):
     dish_type = SelectField('Dish type', coerce=int)
     ingredients = TextAreaField('Add Ingredients (please use semicolon as separator)')
     steps = TextAreaField('Add Steps (please use semicolon as separator)')
-    submit = SubmitField('Submit')
+    submit = SubmitField('Save recipe')
 
 
 class SearchRecipeToDelete(FlaskForm):
-    recipe_to_delete = SearchField('Search')
-    submit = SubmitField('Submit')
+    recipe_to_delete = SearchField('Input recipe to delete')
+    submit = SubmitField('Search')
 
 
 class DeleteRecipeForm(FlaskForm):
     form_id = HiddenField('Form_id')
-    submit = SubmitField('Submit')
+    submit = SubmitField('Delete recipe')

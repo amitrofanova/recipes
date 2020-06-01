@@ -27,6 +27,7 @@ def user(username):
 @login_required
 def edit_profile():
     form = EditProfileForm(current_user.username)
+
     if form.validate_on_submit():
         current_user.username = form.username.data
         db.session.commit()
@@ -91,7 +92,7 @@ def dashboard():
 @bp.route('/delete_recipe/<search_string>', methods=['GET', 'POST'])
 @login_required
 def delete_recipe(search_string):
-    search_result = Recipe.query.filter_by(title=search_string).all()
+    search_result = Recipe.query.filter_by(title=search_string).filter_by(user_id=current_user.id).all()
     recipes_count = len(search_result)
     form = DeleteRecipeForm()
 
@@ -99,9 +100,64 @@ def delete_recipe(search_string):
         form_id = int(form.form_id.data)
 
         Recipe.query.filter_by(id=search_result[form_id].id).delete()
-        
+
         db.session.commit()
+        flash('Recipe has been deleted')
+
         return redirect(url_for('main.index'))
 
     return render_template('delete_recipe.html', title='Delete recipe', search_result=search_result,
                            recipes_count=recipes_count, form=form)
+
+
+@bp.route('/modify_recipe/<search_string>', methods=['GET', 'POST'])
+@login_required
+def modify_recipe(search_string):
+    search_result = Recipe.query.filter_by(title=search_string).filter_by(user_id=current_user.id).first()
+    print(search_result.title)
+    print(search_result.id)
+
+    form = NewRecipeForm()
+    form.dish_type.choices = [(t.id, t.name) for t in DishType.query.all()]
+
+    if form.validate_on_submit():
+        recipe = Recipe.query.filter_by(id=search_result.id).first_or_404()
+
+        ingredients = Ingredient.query.filter_by(recipe_id=recipe.id).all()
+        for i in ingredients:
+            Ingredient.query.filter_by(id=i.id).delete()
+
+        steps = Step.query.filter_by(recipe_id=recipe.id).all()
+        for s in steps:
+            Step.query.filter_by(id=s.id).delete()
+
+        recipe.title = form.title.data
+        recipe.description = form.description.data
+        recipe.dish_type_id = form.dish_type.data
+
+        ingredients = []
+        for d in form.ingredients.data.split(';'):
+            d = d.strip()
+            if d != '':
+                ingredients.append(d)
+        for i in ingredients:
+            ingredient = Ingredient(name=i, recipe=recipe)
+            db.session.add(ingredient)
+
+        steps = []
+        for d in form.steps.data.split(';'):
+            d = d.strip()
+            if d != '':
+                steps.append(d)
+        for i in steps:
+            step = Step(name=i, recipe=recipe)
+            db.session.add(step)
+
+        db.session.commit()
+        flash('Your recipe has been saved!')
+        return redirect(url_for('main.index'))
+
+    elif request.method == 'GET':
+        form.title.data = search_result.title
+
+    return render_template('add_recipe.html', title='Modify recipe', search_result=search_result, form=form)
