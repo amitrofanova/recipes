@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_required
 from app import db
-from app.main.forms import EditProfileForm, NewRecipeForm, SearchRecipeToDelete, DeleteRecipeForm
+from app.main.forms import EditProfileForm, NewRecipeForm, SearchRecipeToModify, SearchRecipeToDelete, DeleteRecipeForm
 from app.models import User, Recipe, DishType, Ingredient, Step
 from app.main import bp
 
@@ -80,11 +80,20 @@ def add_recipe():
 @bp.route('/dashboard', methods=['GET', 'POST'])
 @login_required
 def dashboard():
-    form = SearchRecipeToDelete()
+    form = SearchRecipeToModify()
 
     if form.validate_on_submit():
-        search_string = form.data['recipe_to_delete']
-        return redirect(url_for('main.delete_recipe', search_string=search_string))
+        form_name = form.form_name.data
+
+        if form_name == 'modify':
+            print('modi')
+            search_string = form.data['recipe_to_modify']
+            return redirect(url_for('main.modify_recipe', search_string=search_string))
+
+        if form_name == 'delete':
+            print('del')
+            search_string = form.data['recipe_to_modify']
+            return redirect(url_for('main.delete_recipe', search_string=search_string))
 
     return render_template('dashboard.html', title='Dashboard', form=form)
 

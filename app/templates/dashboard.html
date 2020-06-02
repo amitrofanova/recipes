@@ -2,10 +2,21 @@
 
 {% block content %}
     <form action="" method="post">
-        {{ form.hidden_tag() }}
+        {{ form.csrf_token() }}
+        {{ form.form_name(value="modify") }}
         <p>
-            {{ form.recipe_to_delete.label }}<br>
-            {{ form.recipe_to_delete }}
+            {{ form.recipe_to_modify.label }}<br>
+            {{ form.recipe_to_modify }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+
+    <form action="" method="post">
+        {{ form.csrf_token() }}
+        {{ form.form_name(value="delete") }}
+        <p>
+            {{ form.recipe_to_modify.label }}<br>
+            {{ form.recipe_to_modify }}
         </p>
         <p>{{ form.submit() }}</p>
     </form>
