@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_required
 from app import db
-from app.main.forms import EditProfileForm, NewRecipeForm, SearchRecipeToModify, SearchRecipeToDelete, DeleteRecipeForm
+from app.main.forms import EditProfileForm, NewRecipeForm, SearchRecipe, DeleteRecipeForm
 from app.models import User, Recipe, DishType, Ingredient, Step
 from app.main import bp
 
@@ -80,19 +80,16 @@ def add_recipe():
 @bp.route('/dashboard', methods=['GET', 'POST'])
 @login_required
 def dashboard():
-    form = SearchRecipeToModify()
+    form = SearchRecipe()
 
     if form.validate_on_submit():
         form_name = form.form_name.data
+        search_string = form.data['recipe']
 
         if form_name == 'modify':
-            print('modi')
-            search_string = form.data['recipe_to_modify']
             return redirect(url_for('main.modify_recipe', search_string=search_string))
 
         if form_name == 'delete':
-            print('del')
-            search_string = form.data['recipe_to_modify']
             return redirect(url_for('main.delete_recipe', search_string=search_string))
 
     return render_template('dashboard.html', title='Dashboard', form=form)
@@ -123,8 +120,9 @@ def delete_recipe(search_string):
 @login_required
 def modify_recipe(search_string):
     search_result = Recipe.query.filter_by(title=search_string).filter_by(user_id=current_user.id).first()
-    print(search_result.title)
-    print(search_result.id)
+    if not search_result:
+        flash('No recipes found')
+        return redirect(url_for('main.dashboard'))
 
     form = NewRecipeForm()
     form.dish_type.choices = [(t.id, t.name) for t in DishType.query.all()]
@@ -168,5 +166,19 @@ def modify_recipe(search_string):
 
     elif request.method == 'GET':
         form.title.data = search_result.title
+        form.description.data = search_result.description
+        form.dish_type.data = search_result.dish_type_id
+
+        ingredients = ''
+        for i in search_result.ingredients:
+            ingredients += i.name
+            ingredients += ';\n'
+        form.ingredients.data = ingredients
+
+        steps = ''
+        for s in search_result.steps:
+            steps += s.name
+            steps += ';\n'
+        form.steps.data = steps
 
     return render_template('add_recipe.html', title='Modify recipe', search_result=search_result, form=form)

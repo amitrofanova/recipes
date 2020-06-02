@@ -4,20 +4,26 @@
     <form action="" method="post">
         {{ form.csrf_token() }}
         {{ form.form_name(value="modify") }}
-        <p>
-            {{ form.recipe_to_modify.label }}<br>
-            {{ form.recipe_to_modify }}
-        </p>
-        <p>{{ form.submit() }}</p>
+        <fieldset>
+            <legend>Modify recipe</legend>
+            <p>
+                {{ form.recipe.label }}<br>
+                {{ form.recipe }}
+            </p>
+            <p>{{ form.submit() }}</p>
+        </fieldset>
     </form>
 
     <form action="" method="post">
         {{ form.csrf_token() }}
         {{ form.form_name(value="delete") }}
-        <p>
-            {{ form.recipe_to_modify.label }}<br>
-            {{ form.recipe_to_modify }}
-        </p>
-        <p>{{ form.submit() }}</p>
+        <fieldset>
+            <legend>Delete recipe</legend>
+            <p>
+                {{ form.recipe.label }}<br>
+                {{ form.recipe }}
+            </p>
+            <p>{{ form.submit() }}</p>
+        </fieldset>
     </form>
 {% endblock %}

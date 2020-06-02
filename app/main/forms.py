@@ -29,14 +29,9 @@ class NewRecipeForm(FlaskForm):
     submit = SubmitField('Save recipe')
 
 
-class SearchRecipeToModify(FlaskForm):
+class SearchRecipe(FlaskForm):
     form_name = HiddenField('Form_name')
-    recipe_to_modify = SearchField('Name of recipe to modify')
-    submit = SubmitField('Find recipe')
-
-
-class SearchRecipeToDelete(FlaskForm):
-    recipe_to_delete = SearchField('Name of recipe to delete')
+    recipe = SearchField('Recipe name')
     submit = SubmitField('Find recipe')
 
 
