@@ -14,8 +14,8 @@
 
     Steps:
     <ul>
-        {% for i in recipe.steps %}
-        <li>{{ i.name }}</li>
+        {% for s in recipe.steps %}
+        <li>{{ s.content }}</li>
         {% endfor %}
     </ul>
 

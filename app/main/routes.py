@@ -69,7 +69,7 @@ def add_recipe():
             if d != '':
                 steps.append(d)
         for i in steps:
-            step = Step(name=i, recipe=recipe)
+            step = Step(content=i, recipe=recipe)
             db.session.add(step)
 
         db.session.commit()
@@ -164,7 +164,7 @@ def modify_recipe(search_string):
             if d != '':
                 steps.append(d)
         for i in steps:
-            step = Step(name=i, recipe=recipe)
+            step = Step(content=i, recipe=recipe)
             db.session.add(step)
 
         db.session.commit()
@@ -184,7 +184,7 @@ def modify_recipe(search_string):
 
         steps = ''
         for s in search_result.steps:
-            steps += s.name
+            steps += s.content
             steps += ';\n'
         form.steps.data = steps
 

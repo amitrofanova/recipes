@@ -46,6 +46,8 @@ def load_user(id):
 
 
 class DishType(db.Model):
+    __tablename__ = 'dish_types'
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(140), nullable=False, unique=True)
     recipes = db.relationship('Recipe', backref='dish_type')
@@ -55,12 +57,14 @@ class DishType(db.Model):
 
 
 class Recipe(db.Model):
+    __tablename__ = 'recipes'
+
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(140), nullable=False)
     description = db.Column(db.String())
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='cascade'), nullable=False)
-    dish_type_id = db.Column(db.Integer, db.ForeignKey('dish_type.id'))
+    dish_type_id = db.Column(db.Integer, db.ForeignKey('dish_types.id'))
     ingredients = db.relationship('Ingredient', backref='recipe')
     steps = db.relationship('Step', backref='recipe')
     image = db.Column(db.String())
@@ -73,12 +77,16 @@ class Recipe(db.Model):
 
 
 class Ingredient(db.Model):
+    __tablename__ = 'ingredients'
+
     id = db.Column(db.Integer, primary_key=True)
-    recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.id', ondelete='cascade'), nullable=False)
+    recipe_id = db.Column(db.Integer, db.ForeignKey('recipes.id', ondelete='cascade'), nullable=False)
     name = db.Column(db.String())
 
 
 class Step(db.Model):
+    __tablename__ = 'steps'
+
     id = db.Column(db.Integer, primary_key=True)
-    recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.id', ondelete='cascade'), nullable=False)
-    name = db.Column(db.String())  # rename to "content"
+    recipe_id = db.Column(db.Integer, db.ForeignKey('recipes.id', ondelete='cascade'), nullable=False)
+    content = db.Column(db.String())
