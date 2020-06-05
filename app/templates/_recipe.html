@@ -1,22 +1,23 @@
-<table>
-        <tr valign="top">
-            <td></td>
-            <td>{{ recipe.author.username }} says:
-                <h4>{{ recipe.title }}</h4>
-                {{ recipe.description }}
-                <p>Dish type: {{ recipe.dish_type.name }}</p>
-                Ingredients:
-                <ul>
-                    {% for i in recipe.ingredients %}
-                    <li>{{ i.name }}</li>
-                    {% endfor %}
-                </ul>
-                Steps:
-                <ul>
-                    {% for i in recipe.steps %}
-                    <li>{{ i.name }}</li>
-                    {% endfor %}
-                </ul>
-            </td>
-        </tr>
-    </table>
+<div>
+    <h4>{{ recipe.title }}</h4>
+
+    <p>{{ recipe.description }}</p>
+
+    <p>Dish type: {{ recipe.dish_type.name }}</p>
+
+    Ingredients:
+    <ul>
+        {% for i in recipe.ingredients %}
+        <li>{{ i.name }}</li>
+        {% endfor %}
+    </ul>
+
+    Steps:
+    <ul>
+        {% for i in recipe.steps %}
+        <li>{{ i.name }}</li>
+        {% endfor %}
+    </ul>
+
+    Author: {{ recipe.author.username }}
+</div>

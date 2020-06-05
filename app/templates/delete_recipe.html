@@ -2,18 +2,22 @@
 
 {% block content %}
     {% for i in range(0, recipes_count) %}
-    <form action="" method="post" style="margin: 20px; padding: 5px;">
-        <!-- https://www.reddit.com/r/flask/comments/86yf1t/af_multiple_of_the_same_wtforms_form_on_one_page/ -->
-        {{ form.csrf_token() }}
-        {{ form.form_id(value=i) }}
-        <div>
-            <p>Recipe id: {{ search_result[i].id }}</p>
-            <p>Title: {{ search_result[i].title }}</p>
-            {% if search_result[i].description %}
-            <p>Description: {{ search_result[i].description }}</p>
-            {% endif %}
-        </div>
-        <p>{{ form.submit() }}</p>
-    </form>
+        <form action="" method="post" style="margin: 20px; padding: 5px;">
+            <!-- https://www.reddit.com/r/flask/comments/86yf1t/af_multiple_of_the_same_wtforms_form_on_one_page/ -->
+            {{ form.csrf_token() }}
+            {{ form.form_id(value=i) }}
+            <fieldset>
+                <legend>Delete recipe <b>{{ search_result[i].title }}</b></legend>
+                <div>
+                    <p>Recipe id: {{ search_result[i].id }}</p>
+                    <p>Title: {{ search_result[i].title }}</p>
+                    <p>Dish type: {{ search_result[i].dish_type.name }}</p>
+                    {% if search_result[i].description %}
+                    <p>Description: {{ search_result[i].description }}</p>
+                    {% endif %}
+                </div>
+                <p>{{ form.submit() }}</p>
+            </fieldset>
+        </form>
     {% endfor %}
 {% endblock %}

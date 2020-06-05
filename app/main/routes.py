@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_required
 from app import db
-from app.main.forms import EditProfileForm, NewRecipeForm, SearchRecipe, DeleteRecipeForm
+from app.main.forms import EditProfileForm, NewRecipeForm, SearchRecipeForm, DeleteRecipeForm
 from app.models import User, Recipe, DishType, Ingredient, Step
 from app.main import bp
 
@@ -30,9 +30,11 @@ def edit_profile():
 
     if form.validate_on_submit():
         current_user.username = form.username.data
+
         db.session.commit()
         flash('Your changes have been saved.')
         return redirect(url_for('main.edit_profile'))
+
     elif request.method == 'GET':
         form.username.data = current_user.username
 
@@ -80,11 +82,11 @@ def add_recipe():
 @bp.route('/dashboard', methods=['GET', 'POST'])
 @login_required
 def dashboard():
-    form = SearchRecipe()
+    form = SearchRecipeForm()
 
     if form.validate_on_submit():
         form_name = form.form_name.data
-        search_string = form.data['recipe']
+        search_string = form.data['recipe_name']
 
         if form_name == 'modify':
             return redirect(url_for('main.modify_recipe', search_string=search_string))
@@ -100,6 +102,11 @@ def dashboard():
 def delete_recipe(search_string):
     search_result = Recipe.query.filter_by(title=search_string).filter_by(user_id=current_user.id).all()
     recipes_count = len(search_result)
+
+    if not recipes_count:
+        flash('Recipes not found')
+        return redirect(url_for('main.dashboard'))
+
     form = DeleteRecipeForm()
 
     if form.validate_on_submit():
@@ -109,7 +116,6 @@ def delete_recipe(search_string):
 
         db.session.commit()
         flash('Recipe has been deleted')
-
         return redirect(url_for('main.index'))
 
     return render_template('delete_recipe.html', title='Delete recipe', search_result=search_result,
@@ -120,8 +126,9 @@ def delete_recipe(search_string):
 @login_required
 def modify_recipe(search_string):
     search_result = Recipe.query.filter_by(title=search_string).filter_by(user_id=current_user.id).first()
+
     if not search_result:
-        flash('No recipes found')
+        flash('Recipes not found')
         return redirect(url_for('main.dashboard'))
 
     form = NewRecipeForm()
