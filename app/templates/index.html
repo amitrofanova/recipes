@@ -2,7 +2,9 @@
 
 {% block content %}
     <h1>Hi, {{ current_user.username }}!</h1>
-    {% for recipe in recipes %}
-        {% include '_recipe.html' %}
-    {% endfor %}
+    <div class="recipe__wrapper">
+        {% for recipe in recipes %}
+            {% include '_recipe.html' %}
+        {% endfor %}
+    </div>
 {% endblock %}
