@@ -5,6 +5,7 @@ from flask_login import UserMixin
 from time import time
 import jwt
 from app import db, login
+from sqlalchemy_imageattach.entity import Image, image_attachment
 
 
 class User(UserMixin, db.Model):
@@ -67,10 +68,7 @@ class Recipe(db.Model):
     dish_type_id = db.Column(db.Integer, db.ForeignKey('dish_types.id'))
     ingredients = db.relationship('Ingredient', backref='recipe')
     steps = db.relationship('Step', backref='recipe')
-    image = db.Column(db.String())
-    image_hash = db.Column(db.String())
-    image_min = db.Column(db.String())
-    image_min_hash = db.Column(db.String())
+    picture = image_attachment('RecipePicture')
 
     def __repr__(self):
         return '<Recipe {}>'.format(self.title)
@@ -90,3 +88,10 @@ class Step(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     recipe_id = db.Column(db.Integer, db.ForeignKey('recipes.id', ondelete='cascade'), nullable=False)
     content = db.Column(db.String())
+
+
+class RecipePicture(db.Model, Image):
+    __tablename__ = 'pictures'
+
+    recipe_id = db.Column(db.Integer, db.ForeignKey('recipes.id'), primary_key=True)
+    recipe = db.relationship('Recipe')

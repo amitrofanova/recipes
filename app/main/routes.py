@@ -1,9 +1,22 @@
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_required
-from app import db
+from app import db, store
 from app.main.forms import EditProfileForm, NewRecipeForm, SearchRecipeForm, DeleteRecipeForm
 from app.models import User, Recipe, DishType, Ingredient, Step
 from app.main import bp
+from sqlalchemy_imageattach.context import (pop_store_context, push_store_context)
+from werkzeug.utils import secure_filename
+import os
+
+
+@bp.before_request
+def start_implicit_store_context():
+    push_store_context(store)
+
+
+@bp.teardown_request
+def stop_implicit_store_context(exception=None):
+    pop_store_context()
 
 
 @bp.route('/', methods=['GET', 'POST'])
@@ -46,12 +59,43 @@ def edit_profile():
 def add_recipe():
     form = NewRecipeForm()
     form.dish_type.choices = [(t.id, t.name) for t in DishType.query.all()]
+    print(request.files)
 
     if form.validate_on_submit():
+        if 'picture' not in request.files:
+            print('No file part')
+            flash('No file part')
+            return redirect(request.url)
+
+        file = request.files['picture']
+        print(file)
+
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        # if file:
+        #     filename = secure_filename(file.filename)
+        #     file.save(os.path.join(basedir, filename))
+
+        # image_name = form.picture.data
+        # print('PICTURE: ', form.picture.name)
+
         recipe = Recipe(title=form.title.data,
-                        description=form.description.data,
-                        user_id=current_user.id,
-                        dish_type_id=form.dish_type.data)
+                    description=form.description.data,
+                    user_id=current_user.id,
+                    dish_type_id=form.dish_type.data,
+                    )
+
+        recipe.picture.from_file(file)
+
+        # print(request.files)
+        # image_data = request.files[image_name].read()
+        # print(image_data)
+        #open(os.path.join(UPLOAD_PATH, form.image.data), 'w').write(image_data)
+
+        # with open('test.jpg', 'rb') as f:
+        #     recipe.picture.from_file(f)
+
         db.session.add(recipe)
 
         ingredients = []

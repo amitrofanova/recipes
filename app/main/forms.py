@@ -1,8 +1,10 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SelectField, SubmitField, HiddenField
+from wtforms import StringField, TextAreaField, SelectField, SubmitField, HiddenField, FileField
 from wtforms.fields.html5 import SearchField
-from wtforms.validators import ValidationError, DataRequired, Length
+from wtforms.validators import ValidationError, DataRequired, Length, regexp
 from app.models import User
+from flask import request
+import os
 
 
 class EditProfileForm(FlaskForm):
@@ -26,6 +28,9 @@ class NewRecipeForm(FlaskForm):
     dish_type = SelectField('Dish type', coerce=int)
     ingredients = TextAreaField('Add Ingredients (please use semicolon as separator)')
     steps = TextAreaField('Add Steps (please use semicolon as separator)')
+    picture = FileField('Image File'
+                        # , validators=[regexp('^[^/\\]\.jpg$')]
+                        )
     submit = SubmitField('Save recipe')
 
 
