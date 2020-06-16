@@ -5,6 +5,10 @@
 
     <p>Dish type: {{ recipe.dish_type.name }}</p>
 
+    {% if recipe.picture.find_thumbnail(150) %}
+        {{ recipe.picture.find_thumbnail(150) }}
+    {% endif %}
+
     Ingredients:
     <ul>
         {% for i in recipe.ingredients %}

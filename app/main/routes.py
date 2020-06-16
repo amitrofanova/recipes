@@ -62,39 +62,22 @@ def add_recipe():
     print(request.files)
 
     if form.validate_on_submit():
-        if 'picture' not in request.files:
-            print('No file part')
-            flash('No file part')
-            return redirect(request.url)
-
         file = request.files['picture']
-        print(file)
 
-        if file.filename == '':
-            flash('No selected file')
-            return redirect(request.url)
-        # if file:
-        #     filename = secure_filename(file.filename)
-        #     file.save(os.path.join(basedir, filename))
-
-        # image_name = form.picture.data
-        # print('PICTURE: ', form.picture.name)
+        # if 'picture' not in request.files:
+        #     return redirect(request.url)
+        # if file.filename == '':
+        #     flash('No selected file')
+        #     return redirect(request.url)
 
         recipe = Recipe(title=form.title.data,
-                    description=form.description.data,
-                    user_id=current_user.id,
-                    dish_type_id=form.dish_type.data,
-                    )
+                        description=form.description.data,
+                        user_id=current_user.id,
+                        dish_type_id=form.dish_type.data)
 
         recipe.picture.from_file(file)
 
-        # print(request.files)
-        # image_data = request.files[image_name].read()
-        # print(image_data)
-        #open(os.path.join(UPLOAD_PATH, form.image.data), 'w').write(image_data)
-
-        # with open('test.jpg', 'rb') as f:
-        #     recipe.picture.from_file(f)
+        recipe.picture.generate_thumbnail(width=150, store=store)
 
         db.session.add(recipe)
 
@@ -188,6 +171,10 @@ def modify_recipe(search_string):
         steps = Step.query.filter_by(recipe_id=recipe.id).all()
         for s in steps:
             Step.query.filter_by(id=s.id).delete()
+
+        file = request.files['picture']
+        recipe.picture.from_file(file)
+        recipe.picture.generate_thumbnail(width=150, store=store)
 
         recipe.title = form.title.data
         recipe.description = form.description.data

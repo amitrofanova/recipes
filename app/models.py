@@ -93,5 +93,5 @@ class Step(db.Model):
 class RecipePicture(db.Model, Image):
     __tablename__ = 'pictures'
 
-    recipe_id = db.Column(db.Integer, db.ForeignKey('recipes.id'), primary_key=True)
+    recipe_id = db.Column(db.Integer, db.ForeignKey('recipes.id', ondelete='cascade'), primary_key=True)
     recipe = db.relationship('Recipe')
