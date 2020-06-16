@@ -4,7 +4,7 @@
     <h1>Hi, {{ current_user.username }}!</h1>
     <div class="recipe__wrapper">
         {% for recipe in recipes %}
-            {% include '_recipe.html' %}
+            {% include '_recipe__preview.html' %}
         {% endfor %}
     </div>
 {% endblock %}

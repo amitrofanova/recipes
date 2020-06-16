@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="recipe">
+        <h4>{{ recipe.title }}</h4>
+
+        <p>{{ recipe.description }}</p>
+
+        <p>Dish type: {{ recipe.dish_type.name }}</p>
+
+        {% if recipe.picture.count() %}
+            {{ recipe.picture }}
+        {% endif %}
+
+        Ingredients:
+        <ul>
+            {% for i in recipe.ingredients %}
+            <li>{{ i.name }}</li>
+            {% endfor %}
+        </ul>
+
+        Steps:
+        <ul>
+            {% for s in recipe.steps %}
+            <li>{{ s.content }}</li>
+            {% endfor %}
+        </ul>
+
+        Author: {{ recipe.author.username }}
+    </div>
+{% endblock %}

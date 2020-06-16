@@ -1,0 +1,11 @@
+<a href="{{ url_for('main.recipe', recipe_id=recipe.id) }}" class="recipe__preview">
+    <h4>{{ recipe.title }}</h4>
+
+    <p>{{ recipe.description }}</p>
+
+    <p>Dish type: {{ recipe.dish_type.name }}</p>
+
+    {{ recipe.picture.find_thumbnail(150) }}
+
+    <p>Author: {{ recipe.author.username }}</p>
+</a>
