@@ -4,9 +4,11 @@ from app import db, store
 from app.main.forms import EditProfileForm, NewRecipeForm, SearchRecipeForm, DeleteRecipeForm
 from app.models import User, Recipe, DishType, Ingredient, Step
 from app.main import bp
-from sqlalchemy_imageattach.context import (pop_store_context, push_store_context)
+from sqlalchemy_imageattach.context import (pop_store_context, push_store_context, get_current_store)
+from urllib.parse import urlparse
 from werkzeug.utils import secure_filename
 import os
+import shutil
 
 
 @bp.before_request
@@ -67,7 +69,7 @@ def edit_profile():
 def add_recipe():
     form = NewRecipeForm()
     form.dish_type.choices = [(t.id, t.name) for t in DishType.query.all()]
-    print(request.files)
+    # print(request.files)
 
     if form.validate_on_submit():
         file = request.files['picture']
@@ -82,6 +84,8 @@ def add_recipe():
                         description=form.description.data,
                         user_id=current_user.id,
                         dish_type_id=form.dish_type.data)
+
+        print('RECIPE:       ', recipe)
 
         recipe.picture.from_file(file)
 
@@ -146,8 +150,16 @@ def delete_recipe(search_string):
 
     if form.validate_on_submit():
         form_id = int(form.form_id.data)
+        recipe_id = search_result[form_id].id
+        # recipe = Recipe.query.filter_by(id=recipe_id).first()
+        # image = recipe.picture.require_original()
+        # thumbnail = recipe.picture.find_thumbnail(150)
+        # get_current_store().delete(image)
+        # get_current_store().delete(thumbnail)
+        image_folder = os.path.join(store.path, 'pictures', str(recipe_id))
 
-        Recipe.query.filter_by(id=search_result[form_id].id).delete()
+        Recipe.query.filter_by(id=recipe_id).delete()
+        shutil.rmtree(image_folder)
 
         db.session.commit()
         flash('Recipe has been deleted')
