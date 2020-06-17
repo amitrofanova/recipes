@@ -16,7 +16,7 @@ login = LoginManager()
 login.login_view = 'auth.login'
 mail = Mail()
 store = HttpExposedFileSystemStore(
-        path='images',
+        path='app/static/images',
         prefix='static/images/'
     )
 
