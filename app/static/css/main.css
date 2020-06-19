@@ -1,3 +1,93 @@
+:root {
+    --primary-font: 'Segoe UI', sans-serif;
+    --primary-text-color: #000;
+    --nav-color: #fff;
+    --nav-bg-color: #ec6041;
+    --link-hovered-bg-color: #e43814;
+}
+
+html {
+    box-sizing: border-box;
+    -ms-overflow-style: scrollbar;
+    height: 100vh;
+}
+
+body {
+	min-height: 100vh;
+	position: relative;
+	font-family: var(--primary-font);
+	color: var(--primary-text-color);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+// For correct 'block' display in IE
+article, aside, footer, header, main, nav, section {
+	display: block;
+}
+
+a {
+	text-decoration: none;
+}
+
+.nav {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--nav-bg-color);
+}
+
+.nav__item {
+    position: relative;
+    margin: 0;
+    padding: 15px 5px;
+    color: var(--nav-color);
+}
+
+.nav__item:hover {
+    background-color: var(--link-hovered-bg-color);
+}
+
+.logo {
+    font-weight: bold;
+}
+
+.dropdown {
+    position: relative;
+    cursor: pointer;
+}
+
+.dropdown__content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+}
+
+.dropdown__content a {
+    display: block;
+    padding: 12px 16px;
+    background-color: #fff;
+}
+
+.dropdown__content a:hover {
+    background-color: var(--link-hovered-bg-color);
+}
+
+.dropdown:hover .dropdown__content {
+    display: block;
+}
+
 .recipe__wrapper {
     display: flex;
     flex-wrap: wrap;
