@@ -16,6 +16,7 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
     recipes = db.relationship('Recipe', backref='author')
+    ideas = db.relationship('Idea', backref='author')
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
@@ -95,3 +96,12 @@ class RecipePicture(db.Model, Image):
 
     recipe_id = db.Column(db.Integer, db.ForeignKey('recipes.id', ondelete='cascade'), primary_key=True)
     recipe = db.relationship('Recipe')
+
+
+class Idea(db.Model):
+    __tablename__ = 'ideas'
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='cascade'), nullable=False)
+    title = db.Column(db.String(140), nullable=False)
+    description = db.Column(db.String())

@@ -43,3 +43,9 @@ class SearchRecipeForm(FlaskForm):
 class DeleteRecipeForm(FlaskForm):
     form_id = HiddenField('Form_id')
     submit = SubmitField('Delete recipe')
+
+
+class AddIdeaForm(FlaskForm):
+    title = StringField('Title', validators=[DataRequired(), Length(min=1, max=140)])
+    description = TextAreaField('Description')
+    submit = SubmitField('Save recipe')

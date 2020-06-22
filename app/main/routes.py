@@ -1,12 +1,10 @@
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_required
 from app import db, store
-from app.main.forms import EditProfileForm, NewRecipeForm, SearchRecipeForm, DeleteRecipeForm
-from app.models import User, Recipe, DishType, Ingredient, Step
+from app.main.forms import EditProfileForm, NewRecipeForm, SearchRecipeForm, DeleteRecipeForm, AddIdeaForm
+from app.models import User, Recipe, DishType, Ingredient, Step, Idea
 from app.main import bp
-from sqlalchemy_imageattach.context import (pop_store_context, push_store_context, get_current_store)
-from urllib.parse import urlparse
-from werkzeug.utils import secure_filename
+from sqlalchemy_imageattach.context import (pop_store_context, push_store_context)
 import os
 import shutil
 
@@ -240,3 +238,22 @@ def modify_recipe(search_string):
         form.steps.data = steps
 
     return render_template('add_recipe.html', title='Modify recipe', search_result=search_result, form=form)
+
+
+@bp.route('/try_new', methods=['GET', 'POST'])
+@login_required
+def try_new():
+    add_form = AddIdeaForm()
+
+    if add_form.validate_on_submit():
+        idea = Idea(user_id=current_user.id, title=add_form.title.data, description=add_form.description.data)
+
+        db.session.add(idea)
+        db.session.commit()
+
+        flash('New idea has been saved!')
+        return redirect(url_for('main.try_new'))
+
+    ideas = current_user.ideas
+
+    return render_template('try_new.html', title='Try new', add_form=add_form, ideas=ideas)

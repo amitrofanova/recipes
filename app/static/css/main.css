@@ -25,11 +25,6 @@ body {
     box-sizing: inherit;
 }
 
-* {
-	margin: 0;
-	padding: 0;
-}
-
 // For correct 'block' display in IE
 article, aside, footer, header, main, nav, section {
 	display: block;
