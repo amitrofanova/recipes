@@ -7,6 +7,7 @@ from app.main import bp
 from sqlalchemy_imageattach.context import (pop_store_context, push_store_context)
 import os
 import shutil
+import requests
 
 
 @bp.before_request
@@ -240,9 +241,17 @@ def modify_recipe(search_string):
     return render_template('add_recipe.html', title='Modify recipe', search_result=search_result, form=form)
 
 
-@bp.route('/try_new', methods=['GET', 'POST'])
+@bp.route('/try_new', methods=['GET', 'POST', 'DELETE'])
 @login_required
 def try_new():
+    if request.method == 'DELETE':
+        print(int(request.data))
+        idea_id = int(request.data)
+        Idea.query.filter_by(id=idea_id).delete()
+        db.session.commit()
+        flash('Idea has been deleted')
+        return redirect(url_for('main.try_new'))
+
     add_form = AddIdeaForm()
 
     if add_form.validate_on_submit():
