@@ -1,12 +1,3 @@
-function deleteIdea(event) {
-    var selectedIdeaNum = event.target.getAttribute("data-id");
-    var hToChange = selectedIdeaNum + "h";
-
-    console.log(selectedIdeaNum);
-    console.log(document.querySelector(`h1[data-id="${selectedIdeaNum}h"]`));
-    document.querySelector(`h1[data-id="${selectedIdeaNum}h"]`).innerHTML = "new";
-}
-
 //document.addEventListener('DOMContentLoaded', function() {
 //    document.querySelector('button').onclick = deleteIdea;
 //});
@@ -15,25 +6,29 @@ function deleteIdea(event) {
 //var ideas = container.querySelectorAll("button");
 
 
-
-function deleteData(event) {
+async function deleteIdea(event) {
     var selectedIdeaNum = event.target.getAttribute("data-id");
-    var url = '/try_new';
+//    var url = '/try_new';
+    var url = window.location.pathname;
 
-    return fetch(url, {
-        method: 'delete',
+    let response = await fetch(url, {
+        method: 'DELETE',
         body: selectedIdeaNum
-    })
-    .then(response => response.text());
-}
+    });
 
+    if (response.ok) {
+//        await location.reload();
+        location.reload();
+    } else {
+        alert("Ошибка HTTP: " + response.status);
+    }
+}
 
 var deleteIdeaBtns = document.querySelectorAll("#ideas button");
 
 Array.from(deleteIdeaBtns).forEach((btn) => {
     btn.addEventListener("click", () => {
-        deleteData(event)
-            .then(data => console.log(data));
+            deleteIdea(event);
         }
     );
 });

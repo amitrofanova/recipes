@@ -244,13 +244,18 @@ def modify_recipe(search_string):
 @bp.route('/try_new', methods=['GET', 'POST', 'DELETE'])
 @login_required
 def try_new():
+    print("METHOD", request.method)
     if request.method == 'DELETE':
-        print(int(request.data))
         idea_id = int(request.data)
-        Idea.query.filter_by(id=idea_id).delete()
+        print(idea_id)
+
+        query = Idea.query.filter_by(id=idea_id)
+        idea = query.first_or_404()
+        print(idea)
+        query.delete()
         db.session.commit()
         flash('Idea has been deleted')
-        return redirect(url_for('main.try_new'))
+        return ''  # redirect(url_for('main.try_new'))
 
     add_form = AddIdeaForm()
 
