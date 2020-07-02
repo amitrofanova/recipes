@@ -3,16 +3,16 @@
 {% block content %}
     <div>
         <form action="" method="post">
-            {{ add_form.hidden_tag() }}
+            {{ form.hidden_tag() }}
             <p>
-                {{ add_form.title.label }}<br>
-                {{ add_form.title(size=40) }}
+                {{ form.title.label }}<br>
+                {{ form.title(size=40) }}
             </p>
             <p>
-                {{ add_form.description.label }}<br>
-                {{ add_form.description(cols=32, rows=4) }}
+                {{ form.description.label }}<br>
+                {{ form.description(cols=32, rows=4) }}
             </p>
-            <p>{{ add_form.submit() }}</p>
+            <p>{{ form.submit() }}</p>
         </form>
 
 

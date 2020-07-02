@@ -244,23 +244,10 @@ def modify_recipe(search_string):
 @bp.route('/try_new', methods=['GET', 'POST', 'DELETE'])
 @login_required
 def try_new():
-    print("METHOD", request.method)
-    if request.method == 'DELETE':
-        idea_id = int(request.data)
-        print(idea_id)
+    form = AddIdeaForm()
 
-        query = Idea.query.filter_by(id=idea_id)
-        idea = query.first_or_404()
-        print(idea)
-        query.delete()
-        db.session.commit()
-        flash('Idea has been deleted')
-        return ''  # redirect(url_for('main.try_new'))
-
-    add_form = AddIdeaForm()
-
-    if add_form.validate_on_submit():
-        idea = Idea(user_id=current_user.id, title=add_form.title.data, description=add_form.description.data)
+    if form.validate_on_submit():
+        idea = Idea(user_id=current_user.id, title=form.title.data, description=form.description.data)
 
         db.session.add(idea)
         db.session.commit()
@@ -268,6 +255,15 @@ def try_new():
         flash('New idea has been saved!')
         return redirect(url_for('main.try_new'))
 
+    if request.method == 'DELETE':
+        idea_id = int(request.data)
+
+        Idea.query.filter_by(id=idea_id).delete()
+        db.session.commit()
+
+        flash('Idea has been deleted')
+        return ''
+
     ideas = current_user.ideas
 
-    return render_template('try_new.html', title='Try new', add_form=add_form, ideas=ideas)
+    return render_template('try_new.html', title='Try new', form=form, ideas=ideas)
