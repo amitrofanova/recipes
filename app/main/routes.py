@@ -45,6 +45,14 @@ def recipe(recipe_id):
     return render_template('recipe.html', recipe=recipe)
 
 
+@bp.route('/recipes/<int:dish_type_id>')
+@login_required
+def recipes(dish_type_id):
+    recipes = Recipe.query.filter_by(user_id=current_user.id).filter_by(dish_type_id=dish_type_id).all()
+
+    return render_template('index.html', recipes=recipes)
+
+
 @bp.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
 def edit_profile():

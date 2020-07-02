@@ -11,29 +11,29 @@
         <div class="nav">
             <div class="logo">Recipe Book</div>
             <a class="nav__item" href="{{ url_for('main.index') }}">Home</a>
-            <div class="nav__item dropdown">
-                Recipes
-                <div class="dropdown__content">
-                    <a href="#">Soups</a>
-                    <a href="#">Meat</a>
-                    <a href="#">Desserts</a>
-                </div>
-            </div>
-            <a class="nav__item" href="{{ url_for('main.add_recipe') }}">Add recipe</a>
-            <a class="nav__item" href="{{ url_for('main.try_new') }}">Try new</a>
-            <a class="nav__item" href="{{ url_for('main.dashboard') }}">Dashboard</a>
             {% if current_user.is_anonymous %}
-            <a class="nav__item" href="{{ url_for('auth.login') }}">Login</a>
+                <a class="nav__item" href="{{ url_for('auth.login') }}">Login</a>
             {% else %}
-            <a class="nav__item" href="{{ url_for('main.user', username=current_user.username) }}">Profile</a>
-            <a class="nav__item" href="{{ url_for('auth.logout') }}">Logout</a>
+                <a class="nav__item" href="{{ url_for('main.add_recipe') }}">Add recipe</a>
+                <a class="nav__item" href="{{ url_for('main.try_new') }}">Try new</a>
+                <a class="nav__item" href="{{ url_for('main.dashboard') }}">Dashboard</a>
+                <div class="nav__item dropdown">
+                    Recipes
+                    <div class="dropdown__content">
+                        <a href="{{ url_for('main.recipes', dish_type_id=1) }}">Soups</a>
+                        <a href="{{ url_for('main.recipes', dish_type_id=2) }}">Meat</a>
+                        <a href="{{ url_for('main.recipes', dish_type_id=5) }}">Desserts</a>
+                    </div>
+                </div>
+                <a class="nav__item" href="{{ url_for('main.user', username=current_user.username) }}">Profile</a>
+                <a class="nav__item" href="{{ url_for('auth.logout') }}">Logout</a>
             {% endif %}
         </div>
         {% with messages = get_flashed_messages() %}
         {% if messages %}
         <ul>
             {% for message in messages %}
-            <li>{{ message }}</li>
+                <li>{{ message }}</li>
             {% endfor %}
         </ul>
         {% endif %}
