@@ -4,3 +4,4 @@
 *.db
 /.idea
 /.env
+/app/static/images
