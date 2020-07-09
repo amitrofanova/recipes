@@ -5,7 +5,9 @@
 
     <p>Dish type: {{ recipe.dish_type.name }}</p>
 
-    {{ recipe.picture.find_thumbnail(150) }}
+    {% if recipe.picture.count() %}
+        {{ recipe.picture.find_thumbnail(150) }}
+    {% endif %}
 
     <p>Author: {{ recipe.author.username }}</p>
 </a>

@@ -79,7 +79,13 @@ def add_recipe():
     # print(request.files)
 
     if form.validate_on_submit():
+        recipe = Recipe(title=form.title.data,
+                        description=form.description.data,
+                        user_id=current_user.id,
+                        dish_type_id=form.dish_type.data)
+
         file = request.files['picture']
+        if file.filename != '':
 
         # if 'picture' not in request.files:
         #     return redirect(request.url)
@@ -87,16 +93,9 @@ def add_recipe():
         #     flash('No selected file')
         #     return redirect(request.url)
 
-        recipe = Recipe(title=form.title.data,
-                        description=form.description.data,
-                        user_id=current_user.id,
-                        dish_type_id=form.dish_type.data)
+            recipe.picture.from_file(file)
 
-        print('RECIPE:       ', recipe)
-
-        recipe.picture.from_file(file)
-
-        recipe.picture.generate_thumbnail(width=150, store=store)
+            recipe.picture.generate_thumbnail(width=150, store=store)
 
         db.session.add(recipe)
 
@@ -163,10 +162,14 @@ def delete_recipe(search_string):
         # thumbnail = recipe.picture.find_thumbnail(150)
         # get_current_store().delete(image)
         # get_current_store().delete(thumbnail)
-        image_folder = os.path.join(store.path, 'pictures', str(recipe_id))
+        recipe = Recipe.query.filter_by(id=recipe_id).first()
+        image = recipe.picture.first()
+
+        if image:
+            image_folder = os.path.join(store.path, 'pictures', str(recipe_id))
+            shutil.rmtree(image_folder)
 
         Recipe.query.filter_by(id=recipe_id).delete()
-        shutil.rmtree(image_folder)
 
         db.session.commit()
         flash('Recipe has been deleted')
@@ -200,8 +203,9 @@ def modify_recipe(search_string):
             Step.query.filter_by(id=s.id).delete()
 
         file = request.files['picture']
-        recipe.picture.from_file(file)
-        recipe.picture.generate_thumbnail(width=150, store=store)
+        if file.filename != '':
+            recipe.picture.from_file(file)
+            recipe.picture.generate_thumbnail(width=150, store=store)
 
         recipe.title = form.title.data
         recipe.description = form.description.data
