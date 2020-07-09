@@ -12,14 +12,14 @@
             {{ recipe.picture }}
         {% endif %}
 
-        Ingredients:
+        <br>Ingredients:
         <ul>
             {% for i in recipe.ingredients %}
             <li>{{ i.name }}</li>
             {% endfor %}
         </ul>
 
-        Steps:
+        <br>Steps:
         <ul>
             {% for s in recipe.steps %}
             <li>{{ s.content }}</li>

@@ -76,7 +76,6 @@ def edit_profile():
 def add_recipe():
     form = NewRecipeForm()
     form.dish_type.choices = [(t.id, t.name) for t in DishType.query.all()]
-    # print(request.files)
 
     if form.validate_on_submit():
         recipe = Recipe(title=form.title.data,
@@ -86,16 +85,10 @@ def add_recipe():
 
         file = request.files['picture']
         if file.filename != '':
-
+            recipe.picture.from_file(file)
+            recipe.picture.generate_thumbnail(width=150, store=store)
         # if 'picture' not in request.files:
         #     return redirect(request.url)
-        # if file.filename == '':
-        #     flash('No selected file')
-        #     return redirect(request.url)
-
-            recipe.picture.from_file(file)
-
-            recipe.picture.generate_thumbnail(width=150, store=store)
 
         db.session.add(recipe)
 
@@ -157,13 +150,12 @@ def delete_recipe(search_string):
     if form.validate_on_submit():
         form_id = int(form.form_id.data)
         recipe_id = search_result[form_id].id
-        # recipe = Recipe.query.filter_by(id=recipe_id).first()
+        recipe = Recipe.query.filter_by(id=recipe_id).first()
+        image = recipe.picture.first()
         # image = recipe.picture.require_original()
         # thumbnail = recipe.picture.find_thumbnail(150)
         # get_current_store().delete(image)
         # get_current_store().delete(thumbnail)
-        recipe = Recipe.query.filter_by(id=recipe_id).first()
-        image = recipe.picture.first()
 
         if image:
             image_folder = os.path.join(store.path, 'pictures', str(recipe_id))
@@ -194,6 +186,7 @@ def modify_recipe(search_string):
     if form.validate_on_submit():
         recipe = Recipe.query.filter_by(id=search_result.id).first_or_404()
 
+        # empty current ingredients and steps
         ingredients = Ingredient.query.filter_by(recipe_id=recipe.id).all()
         for i in ingredients:
             Ingredient.query.filter_by(id=i.id).delete()
@@ -202,14 +195,15 @@ def modify_recipe(search_string):
         for s in steps:
             Step.query.filter_by(id=s.id).delete()
 
+        # collect new data
+        recipe.title = form.title.data
+        recipe.description = form.description.data
+        recipe.dish_type_id = form.dish_type.data
+
         file = request.files['picture']
         if file.filename != '':
             recipe.picture.from_file(file)
             recipe.picture.generate_thumbnail(width=150, store=store)
-
-        recipe.title = form.title.data
-        recipe.description = form.description.data
-        recipe.dish_type_id = form.dish_type.data
 
         ingredients = []
         for d in form.ingredients.data.split(';'):
@@ -230,7 +224,7 @@ def modify_recipe(search_string):
             db.session.add(step)
 
         db.session.commit()
-        flash('Your recipe has been saved!')
+        flash('Changes have been saved!')
         return redirect(url_for('main.index'))
 
     elif request.method == 'GET':
