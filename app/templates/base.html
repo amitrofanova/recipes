@@ -8,27 +8,29 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     </head>
     <body>
-        <div class="nav">
+        <header class="header">
             <div class="logo">Recipe Book</div>
-            <a class="nav__item" href="{{ url_for('main.index') }}">Home</a>
-            {% if current_user.is_anonymous %}
-                <a class="nav__item" href="{{ url_for('auth.login') }}">Login</a>
-            {% else %}
-                <a class="nav__item" href="{{ url_for('main.add_recipe') }}">Add recipe</a>
-                <a class="nav__item" href="{{ url_for('main.try_new') }}">Try new</a>
-                <a class="nav__item" href="{{ url_for('main.dashboard') }}">Dashboard</a>
-                <div class="nav__item dropdown">
-                    Recipes
-                    <div class="dropdown__content">
-                        <a href="{{ url_for('main.recipes', dish_type_id=1) }}">Soups</a>
-                        <a href="{{ url_for('main.recipes', dish_type_id=2) }}">Meat</a>
-                        <a href="{{ url_for('main.recipes', dish_type_id=5) }}">Desserts</a>
+            <div class="nav container">
+                <a class="nav__item" href="{{ url_for('main.index') }}">Home</a>
+                {% if current_user.is_anonymous %}
+                    <a class="nav__item" href="{{ url_for('auth.login') }}">Login</a>
+                {% else %}
+                    <a class="nav__item" href="{{ url_for('main.add_recipe') }}">Add recipe</a>
+                    <a class="nav__item" href="{{ url_for('main.try_new') }}">Try new</a>
+                    <a class="nav__item" href="{{ url_for('main.dashboard') }}">Dashboard</a>
+                    <div class="nav__item dropdown">
+                        Recipes
+                        <div class="dropdown__content">
+                            <a href="{{ url_for('main.recipes', dish_type_id=1) }}">Soups</a>
+                            <a href="{{ url_for('main.recipes', dish_type_id=2) }}">Meat</a>
+                            <a href="{{ url_for('main.recipes', dish_type_id=5) }}">Desserts</a>
+                        </div>
                     </div>
-                </div>
-                <a class="nav__item" href="{{ url_for('main.user', username=current_user.username) }}">Profile</a>
-                <a class="nav__item" href="{{ url_for('auth.logout') }}">Logout</a>
-            {% endif %}
-        </div>
+                    <a class="nav__item" href="{{ url_for('main.user', username=current_user.username) }}">Profile</a>
+                    <a class="nav__item" href="{{ url_for('auth.logout') }}">Logout</a>
+                {% endif %}
+            </div>
+        </header>
         {% with messages = get_flashed_messages() %}
         {% if messages %}
         <ul>
@@ -38,7 +40,9 @@
         </ul>
         {% endif %}
         {% endwith %}
-        {% block content %}{% endblock %}
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
         <script src="/static/script.js"></script>
     </body>
 </html>

@@ -1,13 +1,11 @@
-<a href="{{ url_for('main.recipe', recipe_id=recipe.id) }}" class="recipe__preview">
-    <h4>{{ recipe.title }}</h4>
+<a href="{{ url_for('main.recipe', recipe_id=recipe.id) }}" class="recipe-preview">
+    <h1 class="recipe-preview__content recipe-preview__title">{{ recipe.title }}</h1>
 
-    <p>{{ recipe.description }}</p>
-
-    <p>Dish type: {{ recipe.dish_type.name }}</p>
+    <p class="recipe-preview__content recipe-preview__description">{{ recipe.description }}</p>
 
     {% if recipe.picture.count() %}
-        {{ recipe.picture.find_thumbnail(150) }}
+        <div class="recipe-preview__image">
+            {{ recipe.picture.find_thumbnail(150) }}
+        </div>
     {% endif %}
-
-    <p>Author: {{ recipe.author.username }}</p>
 </a>

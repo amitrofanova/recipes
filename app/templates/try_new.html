@@ -2,16 +2,15 @@
 
 {% block content %}
     <div>
-        <form action="" method="post">
+        <form action="" method="post" class="form">
             {{ form.hidden_tag() }}
-            <p>
-                {{ form.title.label }}<br>
-                {{ form.title(size=40) }}
-            </p>
-            <p>
-                {{ form.description.label }}<br>
-                {{ form.description(cols=32, rows=4) }}
-            </p>
+
+            {{ form.title.label }}<br>
+            {{ form.title(size=40, class="form__input") }}<br>
+
+            {{ form.description.label }}<br>
+            {{ form.description(cols=32, rows=4, class="form__input") }}<br>
+
             <p>{{ form.submit() }}</p>
         </form>
 
@@ -20,7 +19,7 @@
             <table border="1px solid #000;">
                 {% for idea in ideas %}
                     <tr>
-                        <td>
+                        <td style="padding: 10px;">
                             <h4>{{ idea.title }}</h4>
                             <p>{{ idea.description }}</p>
                         </td>

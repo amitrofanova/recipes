@@ -1,6 +1,6 @@
 :root {
     --primary-font: 'Segoe UI', sans-serif;
-    --primary-text-color: #000;
+    --primary-text-color: #444444;
     --nav-color: #fff;
     --nav-bg-color: #ec6041;
     --link-hovered-bg-color: #e43814;
@@ -16,6 +16,7 @@ body {
 	min-height: 100vh;
 	position: relative;
 	font-family: var(--primary-font);
+	font-size: 1vw;
 	color: var(--primary-text-color);
 }
 
@@ -23,6 +24,12 @@ body {
 *::before,
 *::after {
     box-sizing: inherit;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	font-size: 100%;
 }
 
 // For correct 'block' display in IE
@@ -34,25 +41,49 @@ a {
 	text-decoration: none;
 }
 
+.container {
+    margin:0 auto;
+    width: 100%;
+    max-width:1140px
+}
+
+@media only screen and (min-width:1024px) and (max-width:1200px) {
+    .container {
+        max-width:1000px
+    }
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--nav-bg-color);
+}
+
 .nav {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    background-color: var(--nav-bg-color);
 }
 
 .nav__item {
     position: relative;
     margin: 0;
-    padding: 15px 5px;
+    padding: 15px 10px;
     color: var(--nav-color);
 }
 
+.nav__item:first-child {
+    padding-left: 0;
+}
+
 .nav__item:hover {
-    background-color: var(--link-hovered-bg-color);
+    color: var(--primary-text-color);
 }
 
 .logo {
+    position: absolute;
+    left: 30px;
     font-weight: bold;
 }
 
@@ -71,8 +102,11 @@ a {
 
 .dropdown__content a {
     display: block;
+    border: 1px solid var(--link-hovered-bg-color);
+    border-top: none;
     padding: 12px 16px;
     background-color: #fff;
+    color: var(--primary-text-color);
 }
 
 .dropdown__content a:hover {
@@ -84,14 +118,41 @@ a {
 }
 
 .recipe__wrapper {
+    margin: 25px 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
-.recipe__preview {
-    margin: 10px;
+.recipe-preview {
+    position: relative;
     border: 1px solid green;
-    padding-right: 5px;
-    padding-left: 5px;
+    border-radius: 2px;
+    color: var(--primary-text-color);
+}
+
+.recipe-preview__content {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.recipe-preview__title {
+    margin: 10px 0;
+}
+
+.recipe-preview__description {
+    margin: 10px 0;
+}
+
+.recipe-preview__image {
+}
+
+.form {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.form__input {
+    margin-top: 7px;
+    margin-bottom: 23px;
 }
