@@ -1,34 +1,32 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div>
-        <form action="" method="post" class="form">
+    <div class="ideas__page-content">
+        <div id="ideas" class="ideas__wrapper">
+            {% for idea in ideas %}
+                <div class="ideas__item">
+                    <div>
+                        <h1 class_="ideas__item-title">{{ idea.title }}</h1>
+                        <p>{{ idea.description }}</p>
+                    </div>
+                    <button data-id="{{ idea.id }}" class="button">Delete idea</button>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="ideas__form">
+            <h1>Add new idea</h1>
+            <form action="" method="post" class="form">
             {{ form.hidden_tag() }}
 
             {{ form.title.label }}<br>
-            {{ form.title(size=40, class="form__input") }}<br>
+            {{ form.title(size=30, class="form__input") }}<br>
 
             {{ form.description.label }}<br>
             {{ form.description(cols=32, rows=4, class="form__input") }}<br>
 
-            <p>{{ form.submit() }}</p>
+            <p>{{ form.submit(class="button") }}</p>
         </form>
-
-
-        <div id="ideas">
-            <table border="1px solid #000;">
-                {% for idea in ideas %}
-                    <tr>
-                        <td style="padding: 10px;">
-                            <h4>{{ idea.title }}</h4>
-                            <p>{{ idea.description }}</p>
-                        </td>
-                        <td>
-                            <button data-id="{{ idea.id }}">Delete idea</button>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </table>
         </div>
     </div>
 {% endblock %}

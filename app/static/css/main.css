@@ -2,8 +2,9 @@
     --primary-font: 'Segoe UI', sans-serif;
     --primary-text-color: #444444;
     --nav-color: #fff;
-    --nav-bg-color: #ec6041;
+    --primary-bg-color: #ec6041;
     --link-hovered-bg-color: #e43814;
+    --secondary-bg-color: #ffc59e;
 }
 
 html {
@@ -57,7 +58,7 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--nav-bg-color);
+    background-color: var(--primary-bg-color);
 }
 
 .nav {
@@ -125,7 +126,10 @@ a {
 }
 
 .recipe-preview {
+    display: block;
     position: relative;
+    max-width: 250px;
+    min-width: 150px;
     border: 1px solid green;
     border-radius: 2px;
     color: var(--primary-text-color);
@@ -155,4 +159,57 @@ a {
 .form__input {
     margin-top: 7px;
     margin-bottom: 23px;
+    width: 100%;
+    border-color: transparent;
+    border-radius: 2px;
+    padding: 3px;
+}
+
+.ideas__page-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ideas__form {
+    margin-top: 20px;
+    margin-left: 30px;
+    align-self: start;
+    border-radius: 2px;
+    padding: 15px;
+    background-color: var(--secondary-bg-color);
+}
+
+.ideas__wrapper {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    flex-grow: 1;
+    border: 1px solid var(--primary-text-color);
+    border-radius: 2px;
+}
+
+.ideas__item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--primary-text-color);
+    padding: 10px;
+}
+
+.ideas__item-title {
+    padding-bottom: 5px;
+}
+
+.ideas__item:last-child {
+    border-bottom: none;
+}
+
+.button {
+    border: none;
+    border-radius: 2px;
+    padding: 7px 14px;
+    background-color: var(--primary-bg-color);
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: var(--link-hovered-bg-color);
 }
