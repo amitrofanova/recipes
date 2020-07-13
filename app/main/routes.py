@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_required
 from app import db, store
-from app.main.forms import EditProfileForm, NewRecipeForm, SearchRecipeForm, DeleteRecipeForm, AddIdeaForm
+from app.main.forms import EditProfileForm, NewRecipeForm, SearchRecipeForm, DeleteRecipeForm, AddIdeaForm, AddDishTypeForm
 from app.models import User, Recipe, DishType, Ingredient, Step, Idea
 from app.main import bp
 from sqlalchemy_imageattach.context import (pop_store_context, push_store_context)
@@ -273,3 +273,22 @@ def try_new():
     ideas = current_user.ideas
 
     return render_template('try_new.html', title='Try new', form=form, ideas=ideas)
+
+
+@bp.route('/add_dish_type', methods=['GET', 'POST'])
+@login_required
+def add_dish_type():
+    types = DishType.query.all()
+    form = AddDishTypeForm()
+
+    if form.validate_on_submit():
+        new_type = DishType(name=form.data['dish_type'])
+        print(new_type)
+
+        db.session.add(new_type)
+        db.session.commit()
+
+        flash('New dish type has been saved!')
+        return redirect(url_for('main.add_dish_type'))
+
+    return render_template('add_dish_type.html', title='Add dish type', form=form, types=types)

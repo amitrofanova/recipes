@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <main class="justify-content_flex-start">
+        <div id="dish_types" class="">
+            <h1 class="dish-types__title">Current types:</h1>
+            <ul class="">
+                {% for type in types %}
+                    <li>{{ type.name }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="ideas__form">
+            <h1>Add new dish type</h1>
+            <form action="" method="post" class="form">
+            {{ form.hidden_tag() }}
+
+            {{ form.dish_type.label }}<br>
+            {{ form.dish_type(size=30) }}<br>
+
+            <p>{{ form.submit(class="button") }}</p>
+        </form>
+        </div>
+    </main>
+{% endblock %}

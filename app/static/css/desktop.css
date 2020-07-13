@@ -180,6 +180,9 @@ a {
     border-radius: 4px;
 }
 
+.form__wrapper {
+    margin-top: 20px;
+}
 
 .form {
     padding-top: 20px;
@@ -195,16 +198,27 @@ a {
     padding: 3px;
 }
 
-.ideas__page-content {
+.justify-content_space-between {
     display: flex;
     justify-content: space-between;
+}
+
+.justify-content_flex-start {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.dish-types__title {
+    margin-top: 45px;
+    margin-right: 50px;
 }
 
 .ideas__form {
     margin-top: 20px;
     margin-left: 30px;
     align-self: start;
-    flex-basis: 600px;
+    flex-basis: 300px;
+    flex-shrink: 0;
     border-radius: 2px;
     padding: 15px;
     background-color: var(--secondary-bg-color);
@@ -251,6 +265,15 @@ a {
 
 .recipe__dish-type {
     font-size: .8rem;
+}
+
+.dashboard__link {
+    color: var(--primary-text-color);
+    text-decoration: underline;
+}
+
+.dashboard__link:hover {
+    color: var(--link-hovered-bg-color);
 }
 
 .footer {

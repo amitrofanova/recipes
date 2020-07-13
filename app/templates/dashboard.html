@@ -1,29 +1,35 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <form action="" method="post">
-        {{ form.csrf_token() }}
-        {{ form.form_name(value="modify") }}
-        <fieldset>
-            <legend>Modify recipe</legend>
-            <p>
-                {{ form.recipe_name.label }}<br>
-                {{ form.recipe_name }}
-            </p>
-            <p>{{ form.submit() }}</p>
-        </fieldset>
-    </form>
+    <main class="form__wrapper">
+        <form action="" method="post">
+            {{ form.csrf_token() }}
+            {{ form.form_name(value="modify") }}
+            <fieldset>
+                <legend>Modify recipe</legend>
+                <p>
+                    {{ form.recipe_name.label }}<br>
+                    {{ form.recipe_name }}
+                </p>
+                <p>{{ form.submit() }}</p>
+            </fieldset>
+        </form>
 
-    <form action="" method="post">
-        {{ form.csrf_token() }}
-        {{ form.form_name(value="delete") }}
-        <fieldset>
-            <legend>Delete recipe</legend>
-            <p>
-                {{ form.recipe_name.label }}<br>
-                {{ form.recipe_name }}
-            </p>
-            <p>{{ form.submit() }}</p>
-        </fieldset>
-    </form>
+        <form action="" method="post">
+            {{ form.csrf_token() }}
+            {{ form.form_name(value="delete") }}
+            <fieldset>
+                <legend>Delete recipe</legend>
+                <p>
+                    {{ form.recipe_name.label }}<br>
+                    {{ form.recipe_name }}
+                </p>
+                <p>{{ form.submit() }}</p>
+            </fieldset>
+        </form>
+
+        <div class="">
+            <a href="{{ url_for('main.add_dish_type')}}" class="dashboard__link">Add new dish type</a>
+        </div>
+    </main>
 {% endblock %}

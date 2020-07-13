@@ -49,3 +49,7 @@ class AddIdeaForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired(), Length(min=1, max=140)])
     description = TextAreaField('Description')
     submit = SubmitField('Add idea')
+
+class AddDishTypeForm(FlaskForm):
+    dish_type = StringField('Dish type', validators=[DataRequired(), Length(min=1, max=140)])
+    submit = SubmitField('Add dish type')
