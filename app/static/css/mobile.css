@@ -126,10 +126,10 @@ a {
 }
 
 .recipe-preview {
-    margin: .5rem;
+    margin: .8rem;
     display: block;
-    flex-basis: 0;
     position: relative;
+    flex-basis: 0;
     max-width: 250px;
     min-width: 200px;
 }
@@ -237,4 +237,13 @@ a {
 
 .button:hover {
     background-color: var(--link-hovered-bg-color);
+}
+
+.recipe__title {
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.recipe__description {
+
 }

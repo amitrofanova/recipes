@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="ideas__page-content">
+    <main class="ideas__page-content">
         <div id="ideas" class="ideas__wrapper">
             {% for idea in ideas %}
                 <div class="ideas__item">
                     <div>
-                        <h1 class_="ideas__item-title">{{ idea.title }}</h1>
+                        <h1>{{ idea.title }}</h1>
                         <p>{{ idea.description }}</p>
                     </div>
                     <button data-id="{{ idea.id }}" class="button">Delete idea</button>
@@ -28,5 +28,5 @@
             <p>{{ form.submit(class="button") }}</p>
         </form>
         </div>
-    </div>
+    </main>
 {% endblock %}

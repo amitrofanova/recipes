@@ -1,25 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="recipe">
-        <h4>{{ recipe.title }}</h4>
+    <main class="recipe">
+        <h1 class="recipe__title">{{ recipe.title }}</h1>
 
-        <p>{{ recipe.description }}</p>
+        <p class="recipe__description">{{ recipe.description }}</p>
 
-        <p>Dish type: {{ recipe.dish_type.name }}</p>
+        <p class="recipe__dish-type"><b>Dish type:</b> {{ recipe.dish_type.name }}</p>
 
         {% if recipe.picture.count() %}
             {{ recipe.picture }}
         {% endif %}
 
-        <br>Ingredients:
+        <h2>Ingredients:</h2>
         <ul>
             {% for i in recipe.ingredients %}
             <li>{{ i.name }}</li>
             {% endfor %}
         </ul>
 
-        <br>Steps:
+        <h2>Steps:</h2>
         <ul>
             {% for s in recipe.steps %}
             <li>{{ s.content }}</li>
@@ -27,5 +27,5 @@
         </ul>
 
         Author: {{ recipe.author.username }}
-    </div>
+    </main>
 {% endblock %}
