@@ -286,9 +286,6 @@ a {
     width: 100%;
 }
 
-.select-image input {
-
-}
 .footer {
     margin-top: 30px;
     flex-shrink: 0;
@@ -359,4 +356,8 @@ a {
     height: 100%;
     opacity: 0;
     cursor: pointer;
+}
+
+.modify-recipe-btn {
+    color: var(--primary-text-color);
 }
