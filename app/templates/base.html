@@ -5,8 +5,8 @@
         {% else %}
         <title>Welcome to Recipe Book</title>
         {% endif %}
-        <link rel="stylesheet" media="screen and (max-width: 700px)" href="{{ url_for('static', filename='css/mobile.css') }}">
-        <link rel="stylesheet" media="screen and (min-width: 701px)" href="{{ url_for('static', filename='css/desktop.css') }}">
+        <!-- <link rel="stylesheet" media="screen and (max-width: 700px)" href="{{ url_for('static', filename='css/mobile.css') }}"> -->
+        <link rel="stylesheet" media="screen and (min-width: 701px)" href="{{ url_for('static', filename='dist/bundle.css') }}">
     </head>
     <body>
         <header class="header">
@@ -45,6 +45,6 @@
             {% block content %}{% endblock %}
         </div>
         <footer class="footer">2020</footer>
-        <script src="/static/script.js"></script>
+        <script src="/static/dist/scripts.bundle.js"></script>
     </body>
 </html>

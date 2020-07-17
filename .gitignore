@@ -5,3 +5,5 @@
 /.idea
 /.env
 /app/static/images
+/node_modules
+/app/static/dist

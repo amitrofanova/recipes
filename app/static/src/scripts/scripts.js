@@ -1,3 +1,5 @@
+import '../styles/desktop.scss';
+
 async function deleteIdea(event) {
     let selectedIdeaNum = event.target.getAttribute("data-id");
     let url = window.location.pathname;
