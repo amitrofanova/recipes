@@ -1,0 +1,19 @@
+.form__wrapper {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.form {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.form__input {
+    margin-top: 7px;
+    margin-bottom: 23px;
+    width: 100%;
+    border-color: transparent;
+    border-radius: 2px;
+    padding: 3px;
+}

@@ -1,0 +1,16 @@
+.recipe__title {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.recipe__dish-type {
+    font-size: .8rem;
+}
+
+.recipe__wrapper {
+    margin: 25px 0;
+    display: flex;
+    flex-wrap: wrap;
+    /*justify-content: space-between;*/
+}

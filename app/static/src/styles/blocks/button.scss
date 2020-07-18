@@ -1,0 +1,12 @@
+.button {
+    flex-shrink: 0;
+    border: none;
+    border-radius: 2px;
+    padding: 7px 14px;
+    background-color: var(--primary-bg-color);
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: var(--link-hovered-bg-color);
+}

@@ -1,0 +1,25 @@
+.dashboard__link {
+    color: var(--primary-text-color);
+    text-decoration: underline;
+}
+
+.dashboard__link:hover {
+    color: var(--link-hovered-bg-color);
+}
+
+.dish-types__title {
+    margin-top: 45px;
+    margin-right: 50px;
+}
+
+.add-recipe__form {
+    width: 500px;
+}
+
+.add-recipe__form input[type="text"], textarea {
+    width: 100%;
+}
+
+.modify-recipe-btn {
+    color: var(--primary-text-color);
+}

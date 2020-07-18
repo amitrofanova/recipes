@@ -1,0 +1,30 @@
+.ideas__form {
+    margin-top: 20px;
+    margin-left: 30px;
+    align-self: start;
+    flex-basis: 300px;
+    flex-shrink: 0;
+    border-radius: 2px;
+    padding: 15px;
+    background-color: var(--secondary-bg-color);
+}
+
+.ideas__wrapper {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    flex-grow: 1;
+    border: 1px solid var(--primary-text-color);
+    border-radius: 2px;
+}
+
+.ideas__item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--primary-text-color);
+    align-items: center;
+    padding: 0 10px;
+}
+
+.ideas__item:last-child {
+    border-bottom: none;
+}

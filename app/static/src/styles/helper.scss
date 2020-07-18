@@ -33,3 +33,13 @@ article, aside, footer, header, main, nav, section {
 a {
 	text-decoration: none;
 }
+
+.justify-content_space-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+.justify-content_flex-start {
+    display: flex;
+    justify-content: flex-start;
+}
