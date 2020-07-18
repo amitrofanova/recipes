@@ -24,24 +24,15 @@ module.exports = {
             {
                 test: /\.(sa|sc|c)ss$/,
                 use: [
-                    // {
-                    //   loader: "style-loader"
-                    // },
-                    {
-                        loader: MiniCssExtractPlugin.loader
-                    },
-                    {
-                        loader: "css-loader",
-                    },
-                    {
-                        loader: "postcss-loader"
-                    },
+                    // { loader: "style-loader" },
+                    { loader: MiniCssExtractPlugin.loader },
+                    { loader: "css-loader" },
+                    { loader: "postcss-loader" },
                     {
                         loader: "sass-loader",
-                        options: {
-                            implementation: require("sass")
-                        }
-                    }
+                        options: { implementation: require("sass") }
+                    },
+                    { loader: "import-glob-loader" }
                 ]
             }
         ]

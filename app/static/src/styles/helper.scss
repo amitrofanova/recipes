@@ -1,0 +1,35 @@
+html {
+    box-sizing: border-box;
+    -ms-overflow-style: scrollbar;
+    height: 100vh;
+}
+
+body {
+    margin: 0;
+	min-height: 100vh;
+	position: relative;
+    display: flex;
+    flex-direction: column;
+	font-family: var(--primary-font);
+	font-size: 1vw;
+	color: var(--primary-text-color);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+* {
+    font-size: 100%;
+}
+
+// For correct 'block' display in IE
+article, aside, footer, header, main, nav, section {
+	display: block;
+}
+
+a {
+	text-decoration: none;
+}

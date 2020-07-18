@@ -1,4 +1,4 @@
-import '../styles/desktop.scss';
+import '../styles/app.scss';
 
 async function deleteIdea(event) {
     let selectedIdeaNum = event.target.getAttribute("data-id");
