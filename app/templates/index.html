@@ -3,8 +3,12 @@
 {% block content %}
 <!--    <h1>Hi, {{ current_user.username }}!</h1>-->
     <div class="recipe__wrapper">
-        {% for recipe in recipes %}
+        <!-- {% for recipe in recipes %}
             {% include '_recipe__preview.html' %}
+        {% endfor %} -->
+        {% for type in dish_types %}
+
+            {% include '_dish-type__preview.html' %}
         {% endfor %}
     </div>
 {% endblock %}

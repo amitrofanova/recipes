@@ -25,7 +25,16 @@ def stop_implicit_store_context(exception=None):
 @login_required
 def index():
     recipes = current_user.recipes
-    return render_template('index.html', title='Home', recipes=recipes)
+    type_ids = []
+    types = []
+
+    for r in recipes:
+        if r.dish_type_id not in type_ids:
+            type_ids.append(r.dish_type_id)
+            type = DishType.query.filter_by(id=r.dish_type_id).first()
+            types.append(type)
+
+    return render_template('index.html', title='Home', dish_types=types)
 
 
 @bp.route('/user/<username>')
@@ -50,7 +59,7 @@ def recipe(recipe_id):
 def recipes(dish_type_id):
     recipes = Recipe.query.filter_by(user_id=current_user.id).filter_by(dish_type_id=dish_type_id).all()
 
-    return render_template('index.html', recipes=recipes)
+    return render_template('recipes.html', recipes=recipes)
 
 
 @bp.route('/edit_profile', methods=['GET', 'POST'])
