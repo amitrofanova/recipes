@@ -1,7 +1,3 @@
-<a href="{{ url_for('main.recipes', dish_type_id=type.id) }}" class="recipe-preview">
-
-        <div class="recipe-preview__image-wrapper">
-            <img src="/static/images/pictures/fork.png" alt="">
-        </div>
-    <h1 class="recipe-preview__title">{{ type.name }}</h1>
+<a href="{{ url_for('main.recipes', dish_type_id=type.id) }}" class="dish-type-preview">
+    <h1 class="dish-type-preview__title">{{ type.name }}</h1>
 </a>
