@@ -95,7 +95,8 @@ def add_recipe():
         file = request.files['picture']
         if file.filename != '':
             recipe.picture.from_file(file)
-            recipe.picture.generate_thumbnail(width=150, store=store)
+            # recipe.picture.generate_thumbnail(width=300, store=store)
+
         # if 'picture' not in request.files:
         #     return redirect(request.url)
 
@@ -212,7 +213,7 @@ def modify_recipe(search_string):
         file = request.files['picture']
         if file.filename != '':
             recipe.picture.from_file(file)
-            recipe.picture.generate_thumbnail(width=150, store=store)
+            # recipe.picture.generate_thumbnail(width=150, store=store)
 
         ingredients = []
         for d in form.ingredients.data.split(';'):

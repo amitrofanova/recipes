@@ -1,7 +1,7 @@
 <a href="{{ url_for('main.recipe', recipe_id=recipe.id) }}" class="recipe-preview">
     {% if recipe.picture.count() %}
         <div class="recipe-preview__image-wrapper">
-            {{ recipe.picture.find_thumbnail(150) }}
+            {{ recipe.picture }}
         </div>
     {% else %}
         <div class="recipe-preview__image-wrapper">
