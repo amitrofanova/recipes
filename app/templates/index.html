@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="recipe__wrapper">
+    <div class="flex-wrapper">
         {% for type in dish_types %}
             {% include '_dish-type__preview.html' %}
         {% endfor %}
     </div>
-    <div class="justify-content_center">
+    <div class="flex justify-content_center">
         <a href="{{ url_for('main.recipes', recipes=recipes) }}" class="button modify-recipe-btn">All recipes</a>
     </div>
 {% endblock %}

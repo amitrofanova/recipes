@@ -5,12 +5,11 @@
         {% else %}
         <title>Welcome to Recipe Book</title>
         {% endif %}
-        <!-- <link rel="stylesheet" media="screen and (max-width: 700px)" href="{{ url_for('static', filename='css/mobile.css') }}"> -->
         <link rel="stylesheet" media="screen and (min-width: 701px)" href="{{ url_for('static', filename='dist/bundle.css') }}">
     </head>
     <body>
         <header class="header">
-            <div class="logo">Recipe Book</div>
+            <a href="{{ url_for('main.index') }}" class="logo header__logo">Recipe Book</a>
             <div class="nav container">
                 <a class="nav__item" href="{{ url_for('main.index') }}">Home</a>
                 {% if current_user.is_anonymous %}
@@ -33,13 +32,13 @@
             </div>
         </header>
         {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
         {% endwith %}
         <div class="container">
             {% block content %}{% endblock %}

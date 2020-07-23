@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="recipe__wrapper">
+    <div class="flex-wrapper">
         {% for recipe in recipes %}
             {% include '_recipe__preview.html' %}
         {% endfor %}
