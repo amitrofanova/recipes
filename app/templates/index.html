@@ -1,14 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-<!--    <h1>Hi, {{ current_user.username }}!</h1>-->
     <div class="recipe__wrapper">
-        <!-- {% for recipe in recipes %}
-            {% include '_recipe__preview.html' %}
-        {% endfor %} -->
         {% for type in dish_types %}
-
             {% include '_dish-type__preview.html' %}
         {% endfor %}
+    </div>
+    <div class="justify-content_center">
+        <a href="{{ url_for('main.recipes', recipes=recipes) }}" class="button modify-recipe-btn">All recipes</a>
     </div>
 {% endblock %}

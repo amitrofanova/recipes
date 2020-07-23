@@ -54,10 +54,14 @@ def recipe(recipe_id):
     return render_template('recipe.html', recipe=recipe)
 
 
+@bp.route('/recipes', defaults={'dish_type_id': None})
 @bp.route('/recipes/<int:dish_type_id>')
 @login_required
 def recipes(dish_type_id):
-    recipes = Recipe.query.filter_by(user_id=current_user.id).filter_by(dish_type_id=dish_type_id).all()
+    if dish_type_id:
+        recipes = Recipe.query.filter_by(user_id=current_user.id).filter_by(dish_type_id=dish_type_id).all()
+    else:
+        recipes = Recipe.query.filter_by(user_id=current_user.id).all()
 
     return render_template('recipes.html', recipes=recipes)
 
