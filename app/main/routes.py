@@ -126,7 +126,7 @@ def add_recipe():
 
         db.session.commit()
         flash('Your recipe has been saved!')
-        return redirect(url_for('main.index'))
+        return redirect(url_for('main.recipe', recipe_id=recipe.id))
 
     return render_template('add_recipe.html', title='Add recipe', form=form)
 
@@ -239,7 +239,7 @@ def modify_recipe(search_string):
 
         db.session.commit()
         flash('Changes have been saved!')
-        return redirect(url_for('main.index'))
+        return redirect(url_for('main.recipe', recipe_id=recipe.id))
 
     elif request.method == 'GET':
         form.title.data = search_result.title
