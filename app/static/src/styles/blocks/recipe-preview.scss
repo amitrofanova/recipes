@@ -1,15 +1,12 @@
 .recipe-preview {
-    margin: .8rem 1.6rem .8rem 0;
+    // margin: .8rem 1.6rem .8rem 0;
+    margin: 15px;
     display: block;
     position: relative;
     flex-basis: 0;
     max-width: 250px;
     min-width: 200px;
 }
-
-/* .recipe-preview:first-child {
-    margin-left: 0;
-} */
 
 .recipe-preview:hover img {
     transform: scale(1.05);

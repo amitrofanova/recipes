@@ -8,9 +8,14 @@
     font-size: .8rem;
 }
 
-.recipe__wrapper {
-    margin: 25px 0;
+.flex-wrapper {
     display: flex;
     flex-wrap: wrap;
-    /*justify-content: space-between;*/
+    justify-content: space-between;
+    margin: 25px -15px;
+}
+
+.flex-wrapper::after {
+    content: '';
+    flex: auto;
 }

@@ -5,16 +5,14 @@
     align-items: center;
     width: 200px;
     height: 200px;
-    margin-top: 20px;
-    margin-right: 20px;
-    margin-bottom: 20px;
     border-width: 2px;
     border-style: solid;
     border-color: var(--primary-text-color);
     border-radius: 3px;
-    z-index: 1;
     background-image: url('/static/images/bg.png');
     background-size: cover;
+    margin: 15px;
+    z-index: 1;
 }
 
 .dish-type-preview:hover {
@@ -27,6 +25,6 @@
 }
 
 .dish-type-preview__title {
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: var(--primary-text-color);
 }
