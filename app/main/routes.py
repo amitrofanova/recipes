@@ -59,9 +59,9 @@ def recipe(recipe_id):
 @login_required
 def recipes(dish_type_id):
     if dish_type_id:
-        recipes = Recipe.query.filter_by(user_id=current_user.id).filter_by(dish_type_id=dish_type_id).all()
+        recipes = Recipe.query.filter_by(user_id=current_user.id).filter_by(dish_type_id=dish_type_id)
     else:
-        recipes = Recipe.query.filter_by(user_id=current_user.id).all()
+        recipes = Recipe.query.filter_by(user_id=current_user.id)
 
     return render_template('recipes.html', recipes=recipes)
 
