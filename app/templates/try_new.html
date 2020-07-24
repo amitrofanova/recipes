@@ -2,6 +2,7 @@
 
 {% block content %}
     <main class="flex justify-content_space-between">
+        {% if ideas.count() %}
         <div id="ideas" class="ideas__wrapper">
             {% for idea in ideas %}
                 <div class="ideas__item">
@@ -13,9 +14,10 @@
                 </div>
             {% endfor %}
         </div>
+        {% endif %}
 
         <div class="ideas__form">
-            <h1>Add new idea</h1>
+            <h1 class="ideas__form-title">Add new idea</h1>
             <form action="" method="post" class="form">
             {{ form.hidden_tag() }}
 
