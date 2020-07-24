@@ -1,7 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <form action="" method="post" enctype="multipart/form-data" class="add-recipe__form">
+    {% if "add_recipe" in request.path %}
+        <h1 class="page-title">Add new recipe</h1>
+    {% elif "modify_recipe" in request.path %}
+        <h1 class="page-title">Modify recipe</h1>
+    {% endif %}
+    
+    <form action="" method="post" enctype="multipart/form-data" class="entire-page-form">
         {{ form.hidden_tag() }}
         <p>
             {{ form.title.label }}<br>
@@ -30,7 +36,7 @@
         </p>
         <p>
             {{ form.steps.label }}<br>
-            {{ form.steps(cols=50, rows=4) }}<br>
+            {{ form.steps(cols=50, rows=6) }}<br>
             {% for error in form.steps.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
