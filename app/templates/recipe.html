@@ -28,7 +28,7 @@
 
         <div class="flex justify-content_space-between">
             Author: {{ recipe.author.username }}
-            <a href="{{ url_for('main.modify_recipe', search_string=recipe.title) }}" class="button modify-recipe-btn">Modify recipe</a>
+            <a href="{{ url_for('main.modify_recipe', search_string=recipe.title) }}" class="button">Modify recipe</a>
         </div>
     </main>
 {% endblock %}

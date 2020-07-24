@@ -49,3 +49,19 @@ a {
 .justify-content_center {
     justify-content: center;
 }
+
+.flex-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 25px -15px;
+}
+
+.flex-wrapper::after {
+    content: '';
+    flex: auto;
+}
+
+.page-title {
+    font-size: 1.8rem;
+}

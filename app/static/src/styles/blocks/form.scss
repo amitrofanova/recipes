@@ -1,12 +1,12 @@
+.form {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
 .form__wrapper {
     margin-top: 20px;
     display: flex;
     justify-content: space-around;
-}
-
-.form {
-    padding-top: 20px;
-    padding-bottom: 20px;
 }
 
 .form__input {
@@ -16,4 +16,13 @@
     border-color: transparent;
     border-radius: 2px;
     padding: 3px;
+}
+
+.entire-page-form {
+    margin-top: 40px;
+    width: 700px;
+}
+
+.entire-page-form input[type="text"], textarea {
+    width: 100%;
 }
