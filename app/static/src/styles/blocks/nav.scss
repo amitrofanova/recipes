@@ -1,6 +1,10 @@
 .nav {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
+}
+
+.nav__left, .nav__right {
+    display: flex;
     align-items: center;
 }
 
@@ -11,8 +15,12 @@
     color: var(--secondary-text-color);
 }
 
-.nav__item:first-child {
+.nav__left .nav__item:first-child {
     padding-left: 0;
+}
+
+.nav__right .nav__item:last-child {
+    padding-right: 0;
 }
 
 .nav__item:hover {

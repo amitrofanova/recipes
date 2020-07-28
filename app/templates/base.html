@@ -11,23 +11,20 @@
         <header class="header">
             <a href="{{ url_for('main.index') }}" class="logo header__logo">Recipe Book</a>
             <div class="nav container">
-                <a class="nav__item" href="{{ url_for('main.index') }}">Home</a>
                 {% if current_user.is_anonymous %}
                     <a class="nav__item" href="{{ url_for('auth.login') }}">Login</a>
                 {% else %}
-                    <a class="nav__item" href="{{ url_for('main.add_recipe') }}">Add recipe</a>
-                    <a class="nav__item" href="{{ url_for('main.try_new') }}">Try new</a>
-                    <a class="nav__item" href="{{ url_for('main.dashboard') }}">Dashboard</a>
-                    <!-- <div class="nav__item dropdown">
-                        Recipes
-                        <div class="dropdown__content">
-                            <a href="{{ url_for('main.recipes', dish_type_id=1) }}">Soups</a>
-                            <a href="{{ url_for('main.recipes', dish_type_id=2) }}">Meat</a>
-                            <a href="{{ url_for('main.recipes', dish_type_id=5) }}">Desserts</a>
-                        </div>
-                    </div> -->
-                    <a class="nav__item" href="{{ url_for('main.user', username=current_user.username) }}">Profile</a>
-                    <a class="nav__item" href="{{ url_for('auth.logout') }}">Logout</a>
+                    <div class="nav__left">
+                        <a href="{{ url_for('main.index') }}" class="nav__item">Home</a>
+                        <a href="{{ url_for('main.recipes') }}" class="nav__item">All recipes</a>
+                        <a href="{{ url_for('main.try_new') }}" class="nav__item">Ideas</a>
+                    </div>
+                    <div class="nav__right">
+                        <a href="{{ url_for('main.add_recipe') }}" class="nav__item">Add recipe</a>
+                        <a href="{{ url_for('main.dashboard') }}" class="nav__item">Dashboard</a>
+                        <a href="{{ url_for('main.user', username=current_user.username) }}" class="nav__item">Profile</a>
+                        <a href="{{ url_for('auth.logout') }}" class="nav__item">Logout</a>
+                    </div>
                 {% endif %}
             </div>
         </header>
