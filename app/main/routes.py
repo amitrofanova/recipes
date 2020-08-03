@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_required
 from app import db, store
 from app.main.forms import EditProfileForm, NewRecipeForm, SearchRecipeForm, DeleteRecipeForm, AddIdeaForm, AddDishTypeForm
-from app.models import User, Recipe, DishType, Ingredient, Step, Idea
+from app.models import User, Recipe, DishType, Ingredient, Step, Idea, RecipeImage
 from app.main import bp
 from sqlalchemy_imageattach.context import (pop_store_context, push_store_context)
 import os
@@ -89,6 +89,12 @@ def edit_profile():
 def add_recipe():
     form = NewRecipeForm()
     form.dish_type.choices = [(t.id, t.name) for t in DishType.query.all()]
+    image_url = '';
+
+    if request.method == 'POST':
+        print(request.data.decode('UTF-8'))
+        image_url = request.data.decode('UTF-8')
+        image = RecipeImage(recipe_id=recipe.id, url=image_url)
 
     if form.validate_on_submit():
         recipe = Recipe(title=form.title.data,
@@ -99,7 +105,6 @@ def add_recipe():
         file = request.files['picture']
         if file.filename != '':
             recipe.picture.from_file(file)
-            # recipe.picture.generate_thumbnail(width=300, store=store)
 
         # if 'picture' not in request.files:
         #     return redirect(request.url)
@@ -126,6 +131,10 @@ def add_recipe():
 
         db.session.commit()
         flash('Your recipe has been saved!')
+
+        db.session.add(image)
+        print(image.recipe_id, '          ', image.url)
+
         return redirect(url_for('main.recipe', recipe_id=recipe.id))
 
     return render_template('add_recipe.html', title='Add recipe', form=form)
