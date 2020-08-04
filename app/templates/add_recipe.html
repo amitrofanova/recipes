@@ -45,9 +45,9 @@
         <div class="choose-image-btn-wrapper button">
             {{ form.picture(class_="choose-image-btn", id="picture") }}
         </div>
+
         <input type="file" name="fileSelect" id="fileSelect" value="">
-        <img src="" alt="" id="cl_img">
-        <input type="hidden" name="img_name" id="img_name" value="">
+        {{ form.image(value="") }}
 
         <p>{{ form.submit(class_="button") }}</p>
     </form>

@@ -89,12 +89,11 @@ def edit_profile():
 def add_recipe():
     form = NewRecipeForm()
     form.dish_type.choices = [(t.id, t.name) for t in DishType.query.all()]
-    image_url = '';
 
-    if request.method == 'POST':
-        print(request.data.decode('UTF-8'))
-        image_url = request.data.decode('UTF-8')
-        image = RecipeImage(recipe_id=recipe.id, url=image_url)
+    # if request.method == 'POST':
+    #     print(request.data.decode('UTF-8'))
+    #     image_url = request.data.decode('UTF-8')
+    #     image = RecipeImage(recipe_id=recipe.id, url=image_url)
 
     if form.validate_on_submit():
         recipe = Recipe(title=form.title.data,
@@ -130,11 +129,16 @@ def add_recipe():
             db.session.add(step)
 
         db.session.commit()
-        flash('Your recipe has been saved!')
 
+        image_url = form.image.data
+        print(form.image)
+        print(form.image.data)
+        image = RecipeImage(recipe_id=recipe.id, url=image_url)
         db.session.add(image)
+        db.session.commit()
         print(image.recipe_id, '          ', image.url)
 
+        flash('Your recipe has been saved!')
         return redirect(url_for('main.recipe', recipe_id=recipe.id))
 
     return render_template('add_recipe.html', title='Add recipe', form=form)
