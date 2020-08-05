@@ -90,11 +90,6 @@ def add_recipe():
     form = NewRecipeForm()
     form.dish_type.choices = [(t.id, t.name) for t in DishType.query.all()]
 
-    # if request.method == 'POST':
-    #     print(request.data.decode('UTF-8'))
-    #     image_url = request.data.decode('UTF-8')
-    #     image = RecipeImage(recipe_id=recipe.id, url=image_url)
-
     if form.validate_on_submit():
         recipe = Recipe(title=form.title.data,
                         description=form.description.data,
@@ -130,13 +125,10 @@ def add_recipe():
 
         db.session.commit()
 
-        image_url = form.image.data
-        print(form.image)
-        print(form.image.data)
+        image_url = form.image_url.data
         image = RecipeImage(recipe_id=recipe.id, url=image_url)
         db.session.add(image)
         db.session.commit()
-        print(image.recipe_id, '          ', image.url)
 
         flash('Your recipe has been saved!')
         return redirect(url_for('main.recipe', recipe_id=recipe.id))
@@ -230,7 +222,11 @@ def modify_recipe(search_string):
         file = request.files['picture']
         if file.filename != '':
             recipe.picture.from_file(file)
-            # recipe.picture.generate_thumbnail(width=150, store=store)
+
+        image_id = recipe.image
+        image = RecipeImage.query.filter_by(recipe_id=recipe.id).first()
+        image.url = form.image_url.data
+
 
         ingredients = []
         for d in form.ingredients.data.split(';'):

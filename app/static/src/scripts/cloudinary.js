@@ -14,27 +14,21 @@ async function processImg() {
     });
 
     let cloudinaryData = await uploadToCloudinary.json();
-
-    // let sendDataToServer = await fetch(window.location.pathname, {
-    //     method: 'POST',
-    //     body: cloudinaryData.secure_url
-    // });
-    document.querySelector('#image').value = cloudinaryData.secure_url;
+    document.querySelector('#image_url').value = cloudinaryData.secure_url;
 
     await new Promise((resolve, reject) => {
-        document.querySelector('#image').value = cloudinaryData.secure_url;
-        console.log('fffffffff           ', document.querySelector('#image').value);
-        setTimeout(() => document.createElement('form').submit.call(document.addRecipeForm), 5000);
+        document.querySelector('#image_url').value = cloudinaryData.secure_url;
+        document.createElement('form').submit.call(document.addRecipeForm);
     });
 
     return sendDataToServer;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // if ((window.location.pathname.includes("modify_recipe") == false) ||
-    //     (window.location.pathname.includes("add_recipe") == false)) return;
-    const addRecipeForm = document.querySelector('#addRecipeForm');
+    if (!window.location.pathname.includes("modify_recipe") &&
+        !window.location.pathname.includes("add_recipe")) return;
 
+    const addRecipeForm = document.querySelector('#addRecipeForm');
     addRecipeForm.addEventListener('submit', (e) => {
         e.preventDefault();
         processImg();
