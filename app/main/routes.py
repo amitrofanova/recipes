@@ -225,9 +225,13 @@ def modify_recipe(search_string):
         if file.filename != '':
             recipe.picture.from_file(file)
 
-        image_id = recipe.image
-        image = RecipeImage.query.filter_by(recipe_id=recipe.id).first()
-        image.url = form.image_url.data
+        if recipe.image:
+            image = RecipeImage.query.filter_by(recipe_id=recipe.id).first()
+            image.url = form.image_url.data
+        else:
+            image_url = form.image_url.data
+            image = RecipeImage(recipe_id=recipe.id, url=image_url)
+            db.session.add(image)
 
 
         ingredients = []
@@ -256,7 +260,8 @@ def modify_recipe(search_string):
         form.title.data = search_result.title
         form.description.data = search_result.description
         form.dish_type.data = search_result.dish_type_id
-        if search_result.image[0].url:
+        print(search_result.image)
+        if search_result.image:
             form.image_url.data = search_result.image[0].url
 
         ingredients = ''
