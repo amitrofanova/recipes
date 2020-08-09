@@ -125,8 +125,10 @@ def add_recipe():
 
         db.session.commit()
 
+
         image_url = form.image_url.data
         image = RecipeImage(recipe_id=recipe.id, url=image_url)
+
         db.session.add(image)
         db.session.commit()
 
@@ -254,6 +256,8 @@ def modify_recipe(search_string):
         form.title.data = search_result.title
         form.description.data = search_result.description
         form.dish_type.data = search_result.dish_type_id
+        if search_result.image[0].url:
+            form.image_url.data = search_result.image[0].url
 
         ingredients = ''
         for i in search_result.ingredients:

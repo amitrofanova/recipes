@@ -70,6 +70,7 @@ class Recipe(db.Model):
     ingredients = db.relationship('Ingredient', backref='recipe')
     steps = db.relationship('Step', backref='recipe')
     picture = image_attachment('RecipePicture')
+    image = db.relationship('RecipeImage', backref='recipe')
 
     def __repr__(self):
         return '<Recipe {}>'.format(self.title)
@@ -96,6 +97,14 @@ class RecipePicture(db.Model, Image):
 
     recipe_id = db.Column(db.Integer, db.ForeignKey('recipes.id', ondelete='cascade'), primary_key=True)
     recipe = db.relationship('Recipe')
+
+
+class RecipeImage(db.Model):
+    __tablename__ = 'recipe_images'
+
+    id = db.Column(db.Integer, primary_key=True)
+    recipe_id = db.Column(db.Integer, db.ForeignKey('recipes.id', ondelete='cascade'), nullable=False)
+    url = db.Column(db.String())
 
 
 class Idea(db.Model):

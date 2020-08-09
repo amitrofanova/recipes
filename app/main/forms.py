@@ -31,6 +31,7 @@ class NewRecipeForm(FlaskForm):
     picture = FileField('Image File'
                         # , validators=[regexp('^[^/\\]\.jpg$')]
                         )
+    image_url = HiddenField('Image Url')
     submit = SubmitField('Save recipe')
 
 

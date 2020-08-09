@@ -46,8 +46,12 @@
             {{ form.picture(class_="choose-image-btn", id="picture") }}
         </div>
 
+        {% if "modify_recipe" in request.path %}
+            <img alt="" id="imgPreview">
+        {% endif %}
+
         <input type="file" name="fileSelect" id="fileSelect" value="">
-        {{ form.image(value="") }}
+        {{ form.image_url(value="") }}
 
         <p>{{ form.submit(class_="button") }}</p>
     </form>
