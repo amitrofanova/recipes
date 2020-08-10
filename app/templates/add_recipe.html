@@ -50,7 +50,10 @@
             <img alt="" id="imgPreview">
         {% endif %}
 
-        <input type="file" name="fileSelect" id="fileSelect" value="">
+        <div class="choose-image-btn-wrapper button">
+            <input type="file" name="fileSelect" id="fileSelect" value="" class="choose-image-btn">
+        </div>
+        <span id="fileName"></span>
         {{ form.image_url(value="") }}
 
         <p>{{ form.submit(class_="button") }}</p>
