@@ -33,4 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         processImg();
     })
+
+    if (window.location.pathname.includes("modify_recipe")) {
+        let imgUrl = document.querySelector("#image_url").value;
+        document.querySelector("#imgPreview").src = imgUrl;
+    }
 });
