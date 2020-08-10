@@ -42,10 +42,6 @@
             {% endfor %}
         </p>
 
-        <div class="choose-image-btn-wrapper button">
-            {{ form.picture(class_="choose-image-btn", id="picture") }}
-        </div>
-
         {% if "modify_recipe" in request.path %}
             <img alt="" id="imgPreview">
         {% endif %}

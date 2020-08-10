@@ -96,13 +96,6 @@ def add_recipe():
                         user_id=current_user.id,
                         dish_type_id=form.dish_type.data)
 
-        file = request.files['picture']
-        if file.filename != '':
-            recipe.picture.from_file(file)
-
-        # if 'picture' not in request.files:
-        #     return redirect(request.url)
-
         db.session.add(recipe)
 
         ingredients = []
@@ -220,10 +213,6 @@ def modify_recipe(search_string):
         recipe.title = form.title.data
         recipe.description = form.description.data
         recipe.dish_type_id = form.dish_type.data
-
-        file = request.files['picture']
-        if file.filename != '':
-            recipe.picture.from_file(file)
 
         if recipe.image:
             image = RecipeImage.query.filter_by(recipe_id=recipe.id).first()
