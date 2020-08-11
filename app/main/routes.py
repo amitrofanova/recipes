@@ -165,15 +165,6 @@ def delete_recipe(search_string):
         form_id = int(form.form_id.data)
         recipe_id = search_result[form_id].id
         recipe = Recipe.query.filter_by(id=recipe_id).first()
-        image = recipe.picture.first()
-        # image = recipe.picture.require_original()
-        # thumbnail = recipe.picture.find_thumbnail(150)
-        # get_current_store().delete(image)
-        # get_current_store().delete(thumbnail)
-
-        if image:
-            image_folder = os.path.join(store.path, 'pictures', str(recipe_id))
-            shutil.rmtree(image_folder)
 
         Recipe.query.filter_by(id=recipe_id).delete()
 
@@ -214,13 +205,15 @@ def modify_recipe(search_string):
         recipe.description = form.description.data
         recipe.dish_type_id = form.dish_type.data
 
-        if recipe.image:
-            image = RecipeImage.query.filter_by(recipe_id=recipe.id).first()
-            image.url = form.image_url.data
-        else:
-            image_url = form.image_url.data
-            image = RecipeImage(recipe_id=recipe.id, url=image_url)
-            db.session.add(image)
+
+        if form.image_url.data != 'undefined':
+            if recipe.image and recipe.image[0].url:
+                image = RecipeImage.query.filter_by(recipe_id=recipe.id).first()
+                image.url = form.image_url.data
+            else:
+                image_url = form.image_url.data
+                image = RecipeImage(recipe_id=recipe.id, url=image_url)
+                db.session.add(image)
 
 
         ingredients = []
@@ -249,8 +242,8 @@ def modify_recipe(search_string):
         form.title.data = search_result.title
         form.description.data = search_result.description
         form.dish_type.data = search_result.dish_type_id
-        print(search_result.image)
-        if search_result.image:
+
+        if len(search_result.image):
             form.image_url.data = search_result.image[0].url
 
         ingredients = ''
