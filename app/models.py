@@ -68,7 +68,6 @@ class Recipe(db.Model):
     dish_type_id = db.Column(db.Integer, db.ForeignKey('dish_types.id'))
     ingredients = db.relationship('Ingredient', backref='recipe')
     steps = db.relationship('Step', backref='recipe')
-    picture = image_attachment('RecipePicture')
     image = db.relationship('RecipeImage', backref='recipe')
 
     def __repr__(self):
