@@ -1,12 +1,16 @@
 <a href="{{ url_for('main.recipe', recipe_id=recipe.id) }}" class="recipe-preview">
     {% if recipe.image %}
+        {% set url = recipe.image[0].url %}
+        {% set thumb = url|replace("upload", "upload/w_200,h_200,c_fill") %}
+
         <div class="recipe-preview__image-wrapper">
-            <img src="{{ recipe.image[0].url }}" alt="{{ recipe.title }}">
+            <img src="{{ thumb }}" alt="{{ recipe.title }}">
         </div>
     {% else %}
         <div class="recipe-preview__image-wrapper">
             <img src="/static/images/fork.png" alt="">
         </div>
     {% endif %}
+
     <h1 class="recipe-preview__title">{{ recipe.title }}</h1>
 </a>
