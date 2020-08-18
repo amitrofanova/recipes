@@ -11,21 +11,21 @@
         <header class="header">
             <a href="{{ url_for('main.index') }}" class="logo header__logo">Recipe Book</a>
             <div class="nav container">
-                {% if current_user.is_anonymous %}
-                    <a class="nav__item" href="{{ url_for('auth.login') }}">Login</a>
-                {% else %}
-                    <div class="nav__left">
-                        <a href="{{ url_for('main.index') }}" class="nav__item">Home</a>
-                        <a href="{{ url_for('main.recipes') }}" class="nav__item">All recipes</a>
-                        <a href="{{ url_for('main.try_new') }}" class="nav__item">Ideas</a>
-                    </div>
-                    <div class="nav__right">
-                        <a href="{{ url_for('main.add_recipe') }}" class="nav__item">Add recipe</a>
-                        <a href="{{ url_for('main.dashboard') }}" class="nav__item">Dashboard</a>
-                        <a href="{{ url_for('main.user', username=current_user.username) }}" class="nav__item">Profile</a>
-                        <a href="{{ url_for('auth.logout') }}" class="nav__item">Logout</a>
-                    </div>
-                {% endif %}
+            {% if current_user.is_anonymous %}
+                <a class="nav__item" href="{{ url_for('auth.login') }}">Login</a>
+            {% else %}
+                <div class="nav__left">
+                    <a href="{{ url_for('main.index') }}" class="nav__item">Home</a>
+                    <a href="{{ url_for('main.recipes') }}" class="nav__item">All recipes</a>
+                    <a href="{{ url_for('main.try_new') }}" class="nav__item">Ideas</a>
+                </div>
+                <div class="nav__right">
+                    <a href="{{ url_for('main.add_recipe') }}" class="nav__item">Add recipe</a>
+                    <a href="{{ url_for('main.dashboard') }}" class="nav__item">Dashboard</a>
+                    <a href="{{ url_for('main.user', username=current_user.username) }}" class="nav__item">Profile</a>
+                    <a href="{{ url_for('auth.logout') }}" class="nav__item">Logout</a>
+                </div>
+            {% endif %}
             </div>
         </header>
         {% with messages = get_flashed_messages() %}
@@ -37,9 +37,9 @@
                 </ul>
             {% endif %}
         {% endwith %}
-        <div class="container">
+        <main class="container">
             {% block content %}{% endblock %}
-        </div>
+        </main>
         <footer class="footer">2020</footer>
         <script src="/static/dist/scripts.bundle.js"></script>
     </body>

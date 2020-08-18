@@ -1,5 +1,6 @@
 import { createLoader, destroyLoader } from "./loader.js";
 
+// https://stackoverflow.com/questions/43792026/display-spinner-during-ajax-call-when-using-fetch-api/43792214
 // Store a copy of the fetch function
 var _oldFetch = fetch;
 
