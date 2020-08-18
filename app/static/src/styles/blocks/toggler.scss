@@ -1,0 +1,18 @@
+.toggler {
+	display: block;
+	width: 25px;
+	height: 25px;
+	cursor: pointer;
+}
+
+.toggler_open {
+    &::after {
+        content: url('/static/images/nav-open-btn.svg');
+    }
+}
+
+.toggler_close {
+    &::after {
+        content: url('/static/images/nav-close-btn.svg');
+    }
+}

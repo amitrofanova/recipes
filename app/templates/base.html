@@ -5,10 +5,27 @@
         {% else %}
         <title>Welcome to Recipe Book</title>
         {% endif %}
-        <link rel="stylesheet" media="screen and (min-width: 701px)" href="{{ url_for('static', filename='dist/bundle.css') }}">
+        <!-- <link rel="stylesheet" media="screen and (min-width: 701px)" href="{{ url_for('static', filename='dist/bundle.css') }}"> -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='dist/bundle.css') }}">
     </head>
     <body>
-        <header class="header">
+        <header class="header mobile">
+            <a href="{{ url_for('main.index') }}" class="logo header__logo">Recipe Book</a>
+
+            <div class="header__toggler toggler toggler_open" id="headerToggler"></div>
+
+            <div class="nav container hidden" id="mobileNav">
+                <a href="{{ url_for('main.index') }}" class="nav__item">Home</a>
+                <a href="{{ url_for('main.recipes') }}" class="nav__item">All recipes</a>
+                <a href="{{ url_for('main.try_new') }}" class="nav__item">Ideas</a>
+                <a href="{{ url_for('main.add_recipe') }}" class="nav__item">Add recipe</a>
+                <a href="{{ url_for('main.dashboard') }}" class="nav__item">Dashboard</a>
+                <a href="{{ url_for('main.user', username=current_user.username) }}" class="nav__item">Profile</a>
+                <a href="{{ url_for('auth.logout') }}" class="nav__item">Logout</a>
+            </div>
+        </header>
+
+        <header class="header desktop">
             <a href="{{ url_for('main.index') }}" class="logo header__logo">Recipe Book</a>
             <div class="nav container">
             {% if current_user.is_anonymous %}

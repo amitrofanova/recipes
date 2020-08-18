@@ -1,4 +1,5 @@
 .header {
+    position: relative;
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -6,7 +7,27 @@
     background-color: var(--primary-bg-color);
 }
 
-.header__logo {
-    position: absolute;
-    left: 30px;
+@media (max-width:768px) {
+    .header__logo {
+        margin-left: 15px;
+    }
+
+    .header.mobile {
+        height: 40px;
+    }
+
+    .header__toggler {
+        margin-right: 15px;
+    }
+}
+
+@media only screen and (min-width:768px) and (max-width:1200px) {
+    .header__logo {
+        position: absolute;
+        left: 30px;
+    }
+
+    .header__toggler {
+        display: none;
+    }
 }
