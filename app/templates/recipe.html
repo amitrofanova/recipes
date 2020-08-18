@@ -9,7 +9,7 @@
         <p class="recipe__dish-type"><b>Dish type:</b> {{ recipe.dish_type.name }}</p>
 
         {% if recipe.image %}
-            <img src="{{ recipe.image[0].url }}" alt="{{ recipe.title }}">
+            <img src="{{ recipe.image[0].url }}" alt="{{ recipe.title }}" class="recipe__img">
         {% endif %}
 
         <h2>Ingredients:</h2>
