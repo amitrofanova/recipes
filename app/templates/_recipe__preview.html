@@ -1,4 +1,4 @@
-<a href="{{ url_for('main.recipe', recipe_id=recipe.id) }}" class="recipe-preview">
+<a href="{{ url_for('main.recipe', recipe_id=recipe.id) }}" class="recipe-preview desktop">
     {% if recipe.image %}
     {% set url = recipe.image[0].url %}
     {% set thumb = url|replace("upload", "upload/w_200,h_200,c_fill") %}
@@ -10,6 +10,20 @@
     <div class="recipe-preview__image-wrapper">
         <img src="/static/images/fork.png" alt="">
     </div>
+    {% endif %}
+
+    <div class="recipe-preview__title">
+        {{ recipe.title }}
+    </div>
+</a>
+
+<a href="{{ url_for('main.recipe', recipe_id=recipe.id) }}" class="recipe-preview mobile">
+    {% if recipe.image %}
+    {% set url = recipe.image[0].url %}
+    {% set thumb = url|replace("upload", "upload/w_300,h_150,c_fill") %}
+    <img src="{{ thumb }}" alt="{{ recipe.title }}" class="recipe-preview__image">
+    {% else %}
+    <img src="/static/images/fork.png" alt="" class="recipe-preview__empty-image">
     {% endif %}
 
     <div class="recipe-preview__title">
