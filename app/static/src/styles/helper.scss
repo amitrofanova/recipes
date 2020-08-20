@@ -21,9 +21,9 @@ body {
   box-sizing: inherit;
 }
 
-// * {
-//     font-size: 100%;
-// }
+* {
+    font-size: 100%;
+}
 
 // For correct 'block' display in IE
 article, aside, footer, header, main, nav, section {
@@ -52,9 +52,15 @@ a {
 
 .flex-wrapper {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin: 25px -15px;
+    @media (max-width:600px) {
+        flex-direction: column;
+    }
+    @media (min-width:601px) {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 25px -15px;
+    }
+
 }
 
 .flex-wrapper::after {
