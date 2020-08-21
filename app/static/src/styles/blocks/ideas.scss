@@ -33,8 +33,29 @@
     border-radius: 2px;
     padding: 15px;
     background-color: var(--secondary-bg-color);
+    button {
+        margin-top: 16px;
+        margin-bottom: 16px;
+    }
 }
 
 .ideas__form-title, .ideas__form label {
     color: var(--secondary-text-color);
+}
+
+@media (max-width:600px) {
+    .ideas__item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .ideas__item button {
+        margin-bottom: 20px;
+    }
+
+    .ideas__form {
+        margin-top: 0;
+        margin-left: 0;
+        padding-bottom: 0;
+    }
 }

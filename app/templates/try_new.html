@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <main class="flex justify-content_space-between">
+    <main class="flex flex-direction_column-reverse" id="ideasMain">
         {% if ideas.count() %}
         <div id="ideas" class="ideas__wrapper">
             {% for idea in ideas %}
@@ -22,12 +22,12 @@
             {{ form.hidden_tag() }}
 
             {{ form.title.label }}<br>
-            {{ form.title(size=30, class="form__input") }}<br>
+            {{ form.title(size=30, class_="form__input") }}<br>
 
             {{ form.description.label }}<br>
-            {{ form.description(cols=32, rows=4, class="form__input") }}<br>
+            {{ form.description(cols=32, rows=4, class_="form__input") }}<br>
 
-            <p>{{ form.submit(class="button") }}</p>
+            {{ form.submit(class_="button") }}
         </form>
         </div>
     </main>
