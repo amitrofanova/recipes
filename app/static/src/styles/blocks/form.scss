@@ -6,7 +6,7 @@
 .form__wrapper {
     margin-top: 20px;
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
 }
 
 .form__input {
@@ -20,7 +20,19 @@
 
 .entire-page-form {
     margin-top: 40px;
-    width: 700px;
+    width: 100%;
+}
+
+@media (min-width:601px) {
+    .entire-page-form {
+        margin-top: 40px;
+        width: 700px;
+    }
+
+    .form__wrapper {
+        flex-direction: row;
+        justify-content: space-around;
+    }
 }
 
 .entire-page-form input[type="text"], textarea {

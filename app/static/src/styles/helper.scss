@@ -38,6 +38,10 @@ a {
     display: flex;
 }
 
+.flex-direction_column-reverse {
+    flex-direction: column-reverse;
+}
+
 .justify-content_space-between {
     justify-content: space-between;
 }
@@ -56,6 +60,7 @@ a {
         flex-direction: column;
     }
     @media (min-width:601px) {
+        flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-between;
         margin: 25px -15px;

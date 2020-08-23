@@ -55,7 +55,13 @@
 
     .ideas__form {
         margin-top: 0;
-        margin-left: 0;
+        margin-right: calc(-1 * var(--indent-size));
+        margin-left: calc(-1 * var(--indent-size));
         padding-bottom: 0;
+    }
+
+    .ideas__wrapper {
+        margin-right: calc(-1 * var(--indent-size));
+        margin-left: calc(-1 * var(--indent-size));
     }
 }

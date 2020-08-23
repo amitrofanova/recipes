@@ -13,7 +13,7 @@
 
 .dropdown__content a {
     display: block;
-    border: 1px solid var(--link-hovered-bg-color);
+    border: 1px solid var(--tertiary-bg-color);
     border-top: none;
     padding: 12px 16px;
     background-color: #fff;
@@ -21,7 +21,7 @@
 }
 
 .dropdown__content a:hover {
-    background-color: var(--link-hovered-bg-color);
+    background-color: var(--tertiary-bg-color);
 }
 
 .dropdown:hover .dropdown__content {

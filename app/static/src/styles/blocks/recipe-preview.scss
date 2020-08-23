@@ -1,9 +1,11 @@
 @media (max-width:600px) {
     .recipe-preview {
-        width: 100%;
         height: 150px;
         position: relative;
-        display: flex;overflow: hidden;
+        display: flex;
+        margin-right: calc(-1 * var(--indent-size));
+        margin-left: calc(-1 * var(--indent-size));
+        overflow: hidden;
     }
 
     .recipe-preview + .recipe-preview {
@@ -49,13 +51,17 @@
         margin-left: 15px;
     }
 
+    .recipe-preview:first-child {
+        margin-top: 0;
+    }
+
     .recipe-preview:hover img {
         transform: scale(1.05);
         -webkit-transition: transform .5s ease-in-out;
     }
 
     .recipe-preview:hover .recipe-preview__title {
-        color: var(--link-hovered-bg-color);
+        color: var(--tertiary-bg-color);
     }
 
     .recipe-preview__content {

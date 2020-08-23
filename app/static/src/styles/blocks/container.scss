@@ -3,10 +3,13 @@
     width: 100%;
     max-width:1140px;
     flex: 1 0 auto;
+    padding-right: var(--indent-size);
+    padding-left: var(--indent-size);
 }
 
-@media only screen and (min-width:1024px) and (max-width:1200px) {
+@media (min-width:1024px) {
     .container {
-        max-width:1000px
+        max-width:1000px;
+        padding: 0;
     }
 }
