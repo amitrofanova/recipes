@@ -244,7 +244,9 @@ def modify_recipe(search_string):
         form.dish_type.data = search_result.dish_type_id
 
         if len(search_result.image):
-            form.image_url.data = search_result.image[0].url
+            image_url = search_result.image[0].url
+            image_preview_url = image_url.replace("upload", "upload/w_200,h_200,c_fill")
+            form.image_url.data = image_preview_url
 
         ingredients = ''
         for i in search_result.ingredients:
