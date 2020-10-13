@@ -1,3 +1,7 @@
+.recipe__img {
+    width: 100%;
+}
+
 .recipe__title {
     margin-top: 30px;
     margin-bottom: 20px;
@@ -8,12 +12,8 @@
     font-size: .8rem;
 }
 
-@media (max-width:768px) {
-    .recipe {
-        padding: 0 15px;
-    }
-
+@media (min-width:768px) {
     .recipe__img {
-        width: 100%;
+        width: auto;
     }
 }
