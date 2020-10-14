@@ -1,17 +1,15 @@
-.choose-image-btn-wrapper {
+.file-input-wrapper {
     position: relative;
 	display: flex;
 	align-items: center;
 	width: max-content;
-    border: 1px solid var(--primary-bg-color);
-    background-color: #fff;
 }
 
-.choose-image-btn-wrapper::before {
+.file-input-wrapper::before {
     content: "Choose image";
 }
 
-.choose-image-btn {
+.file-input {
     position: absolute;
     top: 0;
     left: 0;

@@ -1,13 +1,21 @@
-.button {
+.btn {
     flex-shrink: 0;
     border: none;
     border-radius: 2px;
     padding: 7px 14px;
     color: var(--primary-text-color);
-    background-color: var(--primary-bg-color);
     cursor: pointer;
 }
 
-.button:hover {
+.btn--orange {
+    background-color: var(--primary-bg-color);
+}
+
+.btn--white {
+    border: 1px solid var(--primary-bg-color);
+    background-color: var(--color-white);
+}
+
+.btn:hover {
     background-color: var(--tertiary-bg-color);
 }
