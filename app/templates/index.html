@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="flex-wrapper">
+    <div class="grid">
         {% for type in dish_types %}
             {% include '_dish-type__preview.html' %}
         {% endfor %}
