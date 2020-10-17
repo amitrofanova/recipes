@@ -1,34 +1,35 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <main class="recipe">
-        <h1 class="recipe__title">{{ recipe.title }}</h1>
+<main class="recipe">
+    <h1 class="recipe__title">{{ recipe.title }}</h1>
 
-        <p class="recipe__description">{{ recipe.description }}</p>
+    <p class="recipe__description">{{ recipe.description }}</p>
 
-        <p class="recipe__dish-type"><b>Dish type:</b> {{ recipe.dish_type.name }}</p>
+    <p class="recipe__dish-type"><b>Dish type:</b> {{ recipe.dish_type.name }}</p>
 
-        {% if recipe.image %}
-            <img src="{{ recipe.image[0].url }}" alt="{{ recipe.title }}" class="recipe__img">
-        {% endif %}
+    {% if recipe.image %}
+    <img src="{{ recipe.image[0].url }}" alt="{{ recipe.title }}" class="recipe__img">
+    {% endif %}
 
-        <h2>Ingredients:</h2>
-        <ul>
-            {% for i in recipe.ingredients %}
-            <li>{{ i.name }}</li>
-            {% endfor %}
-        </ul>
+    {% if recipe.ingredients %}
+    <h2>Ingredients:</h2>
+    <ul class="recipe__list">
+        {% for i in recipe.ingredients %}
+        <li>{{ i.name }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
 
-        <h2>Steps:</h2>
-        <ul>
-            {% for s in recipe.steps %}
-            <li>{{ s.content }}</li>
-            {% endfor %}
-        </ul>
+    {% if recipe.steps %}
+    <h2>Steps:</h2>
+    <ul class="recipe__list">
+        {% for s in recipe.steps %}
+        <li>{{ s.content }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
 
-        <div class="flex justify-content_space-between">
-            Author: {{ recipe.author.username }}
-            <a href="{{ url_for('main.modify_recipe', search_string=recipe.title) }}" class="btn btn--orange">Modify recipe</a>
-        </div>
-    </main>
+    <a href="{{ url_for('main.modify_recipe', search_string=recipe.title) }}" class="btn btn--orange">Modify recipe</a>
+</main>
 {% endblock %}

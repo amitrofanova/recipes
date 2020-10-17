@@ -1,5 +1,7 @@
 .recipe__img {
-    width: 100%;
+    width: calc(100% + 2 * var(--indent-size));
+    margin-bottom: var(--indent-size);
+    margin-left: calc(-1 * var(--indent-size));
 }
 
 .recipe__title {
@@ -12,8 +14,14 @@
     font-size: .8rem;
 }
 
+.recipe__list {
+    margin-bottom: 40px;
+    padding-left: var(--indent-size);
+}
+
 @media (min-width:768px) {
     .recipe__img {
         width: auto;
+        margin-left: 0;
     }
 }
