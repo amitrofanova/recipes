@@ -6,7 +6,8 @@
             {% include '_dish-type__preview.html' %}
         {% endfor %}
     </div>
+
     <div class="controls flex justify-content_center">
-        <a href="{{ url_for('main.recipes') }}" class="button">All recipes</a>
+        <a href="{{ url_for('main.recipes') }}" class="btn btn--orange">All recipes</a>
     </div>
 {% endblock %}
