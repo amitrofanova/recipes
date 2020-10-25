@@ -7,24 +7,23 @@
     background-color: var(--primary-bg-color);
 }
 
-@media (max-width:600px) {
-    .header__logo {
-        margin-left: 15px;
-    }
-
-    .header.mobile {
-        height: 40px;
-    }
-
-    .header__toggler {
-        margin-right: 15px;
-    }
+.header__logo {
+    margin-left: var(--indent-size);
 }
 
-@media (min-width:601px) {
+.header.mobile {
+    height: 40px;
+}
+
+.header__toggler {
+    margin-right: var(--indent-size);
+}
+
+@media (min-width:400px) {
     .header__logo {
         position: absolute;
         left: 30px;
+        margin-left: 0;
     }
 
     .header__toggler {
