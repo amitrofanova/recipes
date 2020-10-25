@@ -1,59 +1,53 @@
-@media (max-width:600px) {
-    .recipe-preview {
-        height: 150px;
-        position: relative;
-        display: flex;
-        margin-right: calc(-1 * var(--indent-size));
-        margin-left: calc(-1 * var(--indent-size));
-        overflow: hidden;
-    }
-
-    .recipe-preview + .recipe-preview {
-        margin-top: 10px;
-    }
-
-    .recipe-preview__title {
-        margin: auto;
-        text-align: center;
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: var(--primary-text-color);
-        z-index: 1;
-    }
-
-    .recipe-preview__image {
-        width: 100%;
-        position: absolute;
-        top: 0;
-        object-fit: cover;
-        font-family: 'object-fit: cover;'; /*for IE*/
-        opacity: .5;
-    }
-
-    .recipe-preview__empty-image {
-        @extend .recipe-preview__image;
-        top: -50%;
-    }
+.recipe-preview {
+    // height: 150px;
+    position: relative;
+    display: flex;
+    // margin-right: calc(-1 * var(--indent-size));
+    // margin-left: calc(-1 * var(--indent-size));
+    overflow: hidden;
 }
 
-@media (min-width:601px) {
+// .recipe-preview + .recipe-preview {
+//     margin-top: 10px;
+// }
+
+.recipe-preview__title {
+    margin: auto;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-text-color);
+    z-index: 1;
+}
+
+.recipe-preview__image {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    object-fit: cover;
+    font-family: 'object-fit: cover;'; /*for IE*/
+    opacity: .5;
+}
+
+.recipe-preview__empty-image {
+    @extend .recipe-preview__image;
+    top: -50%;
+}
+
+@media (min-width:400px) {
     .recipe-preview {
-        margin: 15px;
+        // height: auto;
         display: block;
-        position: relative;
-        flex-basis: 0;
-        max-width: 250px;
-        min-width: 200px;
     }
 
-    .recipe-preview + .recipe-preview {
-        margin-top: 0;
-        margin-left: 15px;
-    }
+    // .recipe-preview + .recipe-preview {
+    //     margin-top: 0;
+    //     margin-left: 15px;
+    // }
 
-    .recipe-preview:first-child {
-        margin-top: 0;
-    }
+    // .recipe-preview:first-child {
+    //     margin-top: 0;
+    // }
 
     .recipe-preview:hover img {
         transform: scale(1.05);
@@ -70,7 +64,9 @@
     }
 
     .recipe-preview__title {
-        margin: 10px 0 20px;
+        margin: 10px 0;
+        text-align: left;
+        font-size: inherit;
         color: var(--primary-text-color);
     }
 

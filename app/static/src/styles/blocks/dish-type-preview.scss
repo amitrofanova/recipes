@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     width: auto;
-    height: 70px;
+    // height: 70px;
     border-width: 2px;
     border-style: solid;
     border-color: var(--primary-text-color);
@@ -12,20 +12,26 @@
     background-image: url('/static/images/bg.png');
     background-size: cover;
     background-position-y: center;
-    margin-top: 15px;
+    // margin-top: 15px;
+    text-align: center;
     z-index: 1;
 }
 
 .dish-type-preview__title {
-    font-size: 1.8rem;
+    font-size: 1rem;
     color: var(--primary-text-color);
 }
 
 @media (min-width:601px) {
     .dish-type-preview {
-        width: 200px;
-        height: 200px;
-        margin: 15px;
+        // width: 200px;
+        // height: 200px;
+        // margin: 15px;
+        margin-top: 15px;
+    }
+
+    .dish-type-preview__title {
+        font-size: 1.8rem;
     }
 
     .dish-type-preview:hover {
