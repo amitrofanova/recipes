@@ -18,11 +18,11 @@
     color: var(--secondary-text-color);
 }
 
-@media only screen and (min-width:601px) {
+@media only screen and (min-width:400px) {
     .nav {
         height: auto;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: flex-end;
         position: relative;
         border-top: 0;
         text-align: left;
@@ -42,10 +42,22 @@
     }
 
     .nav__item {
-
+        font-size: 1.2vw;
     }
 
     .nav__item:hover {
         color: var(--primary-text-color);
+    }
+}
+
+@media only screen and (min-width:1000px) {
+    .nav__item {
+        font-size: 1vw;
+    }
+}
+
+@media only screen and (min-width:1340px) {
+    .nav {
+        justify-content: space-between;
     }
 }
