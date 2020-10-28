@@ -18,7 +18,7 @@
     color: var(--secondary-text-color);
 }
 
-@media only screen and (min-width:400px) {
+@media only screen and (min-width:600px) {
     .nav {
         height: auto;
         flex-direction: row;
@@ -47,6 +47,12 @@
 
     .nav__item:hover {
         color: var(--primary-text-color);
+    }
+}
+
+@media only screen and (min-width:600px) and (max-width:800px){
+    .nav__item {
+        font-size: 1.45vw;
     }
 }
 
