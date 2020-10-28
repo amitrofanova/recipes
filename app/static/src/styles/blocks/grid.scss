@@ -6,10 +6,20 @@
 
     @media (min-width:400px) {
         grid-auto-rows: auto;
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        grid-template-columns: 1fr 1fr 1fr;
         margin: 35px 0px;
-        grid-gap: 30px;
+        grid-gap: 20px;
         justify-content: space-between;
+    }
+
+    @media (min-width:600px) {
+        grid-auto-rows: auto;
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+        grid-gap: 20px 30px;
+    }
+
+    @media (min-width:800px) {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
 }
 
