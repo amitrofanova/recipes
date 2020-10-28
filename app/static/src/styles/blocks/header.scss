@@ -9,6 +9,7 @@
 
 .header__logo {
     margin-left: var(--indent-size);
+    z-index: 3;
 }
 
 .header.mobile {
@@ -16,6 +17,7 @@
 }
 
 .header__toggler {
+    display: block;
     margin-right: var(--indent-size);
 }
 
