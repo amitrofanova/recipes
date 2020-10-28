@@ -6,7 +6,10 @@
 }
 
 .dashboard__form {
-    margin: 25px 0;
+    margin-top: 0;
+    margin-right: calc(-1 * var(--indent-size));
+    margin-bottom: 25px;
+    margin-left: calc(-1 * var(--indent-size));
 }
 
 .dashboard__link {
@@ -19,6 +22,11 @@
     .dashboard {
         flex-direction: row;
         flex-wrap: wrap;
+    }
+
+    .dashboard__form {
+        margin: 25px 0;
+        max-width: 350px;
     }
 
     .dashboard__link {
