@@ -56,10 +56,10 @@ a {
 
 .flex-wrapper {
     display: flex;
-    @media (max-width:600px) {
+    @media (max-width:599px) {
         flex-direction: column;
     }
-    @media (min-width:601px) {
+    @media (min-width:600px) {
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -82,13 +82,13 @@ a {
 }
 
 .mobile {
-    @media (min-width:601px) {
+    @media (min-width:600px) {
         display: none !important;
     }
 }
 
 .desktop {
-    @media (max-width:600px) {
+    @media (max-width:599px) {
         display: none !important;
     }
 }
