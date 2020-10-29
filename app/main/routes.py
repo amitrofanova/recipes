@@ -1,23 +1,12 @@
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_required
-from app import db, store
+from app import db
 from app.main.forms import EditProfileForm, NewRecipeForm, SearchRecipeForm, DeleteRecipeForm, AddIdeaForm, AddDishTypeForm
 from app.models import User, Recipe, DishType, Ingredient, Step, Idea, RecipeImage
 from app.main import bp
-from sqlalchemy_imageattach.context import (pop_store_context, push_store_context)
 import os
 import shutil
 import requests
-
-
-@bp.before_request
-def start_implicit_store_context():
-    push_store_context(store)
-
-
-@bp.teardown_request
-def stop_implicit_store_context(exception=None):
-    pop_store_context()
 
 
 @bp.route('/', methods=['GET', 'POST'])

@@ -7,7 +7,6 @@ from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_mail import Mail
 from config import Config
-from sqlalchemy_imageattach.stores.fs import HttpExposedFileSystemStore
 
 
 db = SQLAlchemy()
@@ -15,10 +14,6 @@ migrate = Migrate()
 login = LoginManager()
 login.login_view = 'auth.login'
 mail = Mail()
-store = HttpExposedFileSystemStore(
-        path='app/static/images',
-        prefix='static/images/'
-    )
 
 
 def create_app(config_class=Config):
@@ -29,8 +24,6 @@ def create_app(config_class=Config):
     migrate.init_app(app, db)
     login.init_app(app)
     mail.init_app(app)
-
-    app.wsgi_app = store.wsgi_middleware(app.wsgi_app)
 
     from app.errors import bp as errors_bp
     app.register_blueprint(errors_bp)
