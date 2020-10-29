@@ -1,1 +1,1 @@
-web: npm run build; gunicorn recipes:app
+web: gunicorn recipes:app
