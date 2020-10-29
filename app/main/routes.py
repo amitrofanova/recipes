@@ -4,9 +4,6 @@ from app import db
 from app.main.forms import EditProfileForm, NewRecipeForm, SearchRecipeForm, DeleteRecipeForm, AddIdeaForm, AddDishTypeForm
 from app.models import User, Recipe, DishType, Ingredient, Step, Idea, RecipeImage
 from app.main import bp
-import os
-import shutil
-import requests
 
 
 @bp.route('/', methods=['GET', 'POST'])
