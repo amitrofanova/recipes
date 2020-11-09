@@ -1,5 +1,4 @@
 .toggler {
-	// display: block; // TODO: CHECK!
 	width: 25px;
 	height: 25px;
 	cursor: pointer;
@@ -7,12 +6,14 @@
 
 .toggler_open {
     &::after {
-        content: url('/static/images/nav-open-btn.svg');
+        //content: url('/static/images/nav-open-btn.svg');
+        content: url('https://res.cloudinary.com/dzhpku2a7/image/upload/v1604934509/helpers/nav-open-btn_i0wayq.svg');
     }
 }
 
 .toggler_close {
     &::after {
-        content: url('/static/images/nav-close-btn.svg');
+        //content: url('/static/images/nav-close-btn.svg');
+        content: url('https://res.cloudinary.com/dzhpku2a7/image/upload/v1604934518/helpers/nav-close-btn_ioh5cn.svg');
     }
 }
