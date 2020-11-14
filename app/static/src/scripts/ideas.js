@@ -17,14 +17,15 @@ async function deleteIdea(event) {
 function toggleClass() {
     let ideasMain = document.querySelector("#ideasMain");
     let screenWidth = screen.width;
-    console.log(screenWidth);
 
-    if (screenWidth > 600) {
-        ideasMain.classList.remove("flex-direction_column-reverse");
-        ideasMain.classList.add("justify-content_space-between");
-    } else {
-        ideasMain.classList.remove("justify-content_space-between");
-        ideasMain.classList.add("flex-direction_column-reverse");
+    if (ideasMain) {
+        if (screenWidth > 600) {
+            ideasMain.classList.remove("flex-direction_column-reverse");
+            ideasMain.classList.add("justify-content_space-between");
+        } else {
+            ideasMain.classList.remove("justify-content_space-between");
+            ideasMain.classList.add("flex-direction_column-reverse");
+        }
     }
 }
 

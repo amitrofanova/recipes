@@ -1,7 +1,8 @@
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_required
 from app import db
-from app.main.forms import EditProfileForm, NewRecipeForm, SearchRecipeForm, DeleteRecipeForm, AddIdeaForm, AddDishTypeForm
+from app.main.forms import EditProfileForm, NewRecipeForm, SearchRecipeForm, DeleteRecipeForm, AddIdeaForm, \
+    AddDishTypeForm
 from app.models import User, Recipe, DishType, Ingredient, Step, Idea, RecipeImage
 from app.main import bp
 
@@ -104,7 +105,6 @@ def add_recipe():
 
         db.session.commit()
 
-
         image_url = form.image_url.data
         image = RecipeImage(recipe_id=recipe.id, url=image_url)
 
@@ -191,7 +191,6 @@ def modify_recipe(search_string):
         recipe.description = form.description.data
         recipe.dish_type_id = form.dish_type.data
 
-
         if form.image_url.data != 'undefined':
             if recipe.image and recipe.image[0].url:
                 image = RecipeImage.query.filter_by(recipe_id=recipe.id).first()
@@ -200,7 +199,6 @@ def modify_recipe(search_string):
                 image_url = form.image_url.data
                 image = RecipeImage(recipe_id=recipe.id, url=image_url)
                 db.session.add(image)
-
 
         ingredients = []
         for d in form.ingredients.data.split(';'):
