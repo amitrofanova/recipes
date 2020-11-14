@@ -13,7 +13,7 @@
             {{ form.title.label }}<br>
             {{ form.title(size=40) }}<br>
             {% for error in form.title.errors %}
-            <span style="color: red;">[{{ error }}]</span>
+            <span style="color: #ff0000;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
@@ -38,18 +38,18 @@
             {{ form.steps.label }}<br>
             {{ form.steps(cols=50, rows=6) }}<br>
             {% for error in form.steps.errors %}
-            <span style="color: red;">[{{ error }}]</span>
+            <span style="color: #ff0000;">[{{ error }}]</span>
             {% endfor %}
         </p>
 
         {% if "modify_recipe" in request.path %}
-            <img alt="" id="imgPreview" class="form__img">
+            <img src="" alt="" id="imgPreview" class="form__img">
         {% endif %}
 
         <div class="btn btn--white file-input-wrapper">
             <input type="file" name="fileSelect" id="fileSelect" value="" class="file-input">
         </div>
-        <span id="fileName"></span>
+        <span id="fileName" class="file-name"></span>
         {{ form.image_url(value="") }}
 
         <p>{{ form.submit(class_="btn btn--orange") }}</p>
