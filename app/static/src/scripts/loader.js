@@ -10,10 +10,9 @@ export function createLoader(loaderText) {
 	modal.className = "loader";
 	modal.innerHTML = "<div class=\"loader__content\">" +
 			contentString +
-			"<img src=\"../static/images/loader.gif\"/>" +
+			"<br><img src=\"https://res.cloudinary.com/dzhpku2a7/image/upload/v1604934493/helpers/loader.gif\"/>" +
 		"</div>";
 
-	// document.querySelector("main.container").append(modal);
 	document.body.append(modal);
 }
 
