@@ -20,6 +20,11 @@
 }
 
 @media (min-width:768px) {
+    .recipe__img-wrapper {
+        max-height: 600px;
+        object-fit: cover;
+    }
+
     .recipe__img {
         width: auto;
         max-width: 100%;
