@@ -26,8 +26,8 @@ class NewRecipeForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired(), Length(min=1, max=140)])
     description = TextAreaField('Description')
     dish_type = SelectField('Dish type', coerce=int)
-    ingredients = TextAreaField('Add Ingredients (please use semicolon as separator)')
-    steps = TextAreaField('Add Steps (please use semicolon as separator)')
+    ingredients = TextAreaField('Add ingredients (please type every ingredient with new line)')
+    steps = TextAreaField('Add steps (please start to type every step from new line) ')
     picture = FileField('Image File'
                         # , validators=[regexp('^[^/\\]\.jpg$')]
                         )
