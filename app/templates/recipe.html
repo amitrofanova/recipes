@@ -25,11 +25,11 @@
 
     {% if recipe.steps %}
     <h2>Steps:</h2>
-    <ul class="recipe__list">
+    <ol class="recipe__list">
         {% for s in recipe.steps %}
         <li>{{ s.content }}</li>
         {% endfor %}
-    </ul>
+    </ol>
     {% endif %}
 
     <a href="{{ url_for('main.modify_recipe', search_string=recipe.title) }}" class="btn btn--orange">Modify recipe</a>
