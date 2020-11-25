@@ -5,6 +5,7 @@ from app.main.forms import EditProfileForm, NewRecipeForm, SearchRecipeForm, Del
     AddDishTypeForm
 from app.models import User, Recipe, DishType, Ingredient, Step, Idea, RecipeImage
 from app.main import bp
+import re
 
 
 @bp.route('/', methods=['GET', 'POST'])
@@ -86,19 +87,21 @@ def add_recipe():
         db.session.add(recipe)
 
         ingredients = []
-        for d in form.ingredients.data.split(';'):
-            d = d.strip()
-            if d != '':
-                ingredients.append(d)
+        lines = form.ingredients.data.splitlines()
+        for line in lines:
+            line = line.strip()
+            if line != '':
+                ingredients.append(line)
         for i in ingredients:
             ingredient = Ingredient(name=i, recipe=recipe)
             db.session.add(ingredient)
 
         steps = []
-        for d in form.steps.data.split(';'):
-            d = d.strip()
-            if d != '':
-                steps.append(d)
+        lines = form.steps.data.splitlines()
+        for line in lines:
+            line = line.strip()
+            if line != '':
+                steps.append(line)
         for i in steps:
             step = Step(content=i, recipe=recipe)
             db.session.add(step)
