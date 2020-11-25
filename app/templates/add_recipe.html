@@ -29,14 +29,14 @@
         </p>
         <p>
             {{ form.ingredients.label }}<br>
-            {{ form.ingredients(cols=50, rows=4) }}<br>
+            {{ form.ingredients(cols=50, rows=6) }}<br>
             {% for error in form.ingredients.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
             {{ form.steps.label }}<br>
-            {{ form.steps(cols=50, rows=6) }}<br>
+            {{ form.steps(cols=50, rows=10) }}<br>
             {% for error in form.steps.errors %}
             <span style="color: #ff0000;">[{{ error }}]</span>
             {% endfor %}
