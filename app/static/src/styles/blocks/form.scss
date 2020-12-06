@@ -61,12 +61,12 @@
     }
 
     .form label, input, fieldset {
-        font-size: 2vw;
+        font-size: 1em;
     }
 }
 
-@media (min-width:1000px) {
-    .form label, input, fieldset {
-        font-size: 1.2vw;
-    }
-}
+//@media (min-width:1000px) {
+//    .form label, input, fieldset {
+//        font-size: 1.2vw;
+//    }
+//}
