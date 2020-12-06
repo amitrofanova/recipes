@@ -295,3 +295,8 @@ def add_dish_type():
         return redirect(url_for('main.add_dish_type'))
 
     return render_template('add_dish_type.html', title='Add dish type', form=form, types=types)
+
+@app.route('/favicon-32x32.png')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static', 'images'),
+                               'favicon-32x32.png', mimetype='image/png')
