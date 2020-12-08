@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, send_from_directory
 from flask_login import current_user, login_required
 from app import db
 from app.main.forms import EditProfileForm, NewRecipeForm, SearchRecipeForm, DeleteRecipeForm, AddIdeaForm, \
@@ -6,6 +6,7 @@ from app.main.forms import EditProfileForm, NewRecipeForm, SearchRecipeForm, Del
 from app.models import User, Recipe, DishType, Ingredient, Step, Idea, RecipeImage
 from app.main import bp
 import re
+import os
 
 
 @bp.route('/', methods=['GET', 'POST'])
@@ -296,7 +297,8 @@ def add_dish_type():
 
     return render_template('add_dish_type.html', title='Add dish type', form=form, types=types)
 
-@app.route('/favicon-32x32.png')
+
+@bp.route('/favicon-32x32.png')
 def favicon():
-    return send_from_directory(os.path.join(app.root_path, 'static', 'images'),
+    return send_from_directory(os.path.join(bp.root_path, '../static', 'images'),
                                'favicon-32x32.png', mimetype='image/png')
