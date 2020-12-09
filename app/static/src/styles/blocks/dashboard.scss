@@ -6,14 +6,12 @@
 }
 
 .dashboard__form {
-    margin-top: 0;
-    margin-right: calc(-1 * var(--indent-size));
-    margin-bottom: 25px;
-    margin-left: calc(-1 * var(--indent-size));
+    margin: 0 calc(-1 * var(--indent-size)) 2px;
 }
 
 .dashboard__link {
     display: block;
+    padding-top: 25px;
     color: var(--primary-text-color);
     text-decoration: underline;
 }
