@@ -1,12 +1,8 @@
 .file-input-wrapper {
     position: relative;
-	display: flex;
-	align-items: center;
 	width: max-content;
-}
-
-.file-input-wrapper::before {
-    content: "Choose image";
+    overflow: hidden;
+    margin-bottom: 5px;
 }
 
 .file-input {
@@ -21,5 +17,4 @@
 
 .file-name {
     word-wrap: break-word;
-    font-size: 1em;
 }
