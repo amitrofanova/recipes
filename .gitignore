@@ -8,3 +8,4 @@
 /node_modules
 /app/static/dist
 /package-lock.json
+/messages.pot

@@ -1,11 +1,12 @@
 import logging
 from logging.handlers import SMTPHandler, RotatingFileHandler
 import os
-from flask import Flask
+from flask import Flask, request, current_app
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_mail import Mail
+from flask_babel import Babel, lazy_gettext as _l
 from config import Config
 
 
@@ -13,7 +14,9 @@ db = SQLAlchemy()
 migrate = Migrate()
 login = LoginManager()
 login.login_view = 'auth.login'
+login.login_message = _l('Please log in to access this page.')
 mail = Mail()
+babel = Babel()
 
 
 def create_app(config_class=Config):
@@ -24,6 +27,7 @@ def create_app(config_class=Config):
     migrate.init_app(app, db)
     login.init_app(app)
     mail.init_app(app)
+    babel.init_app(app)
 
     from app.errors import bp as errors_bp
     app.register_blueprint(errors_bp)
@@ -63,6 +67,11 @@ def create_app(config_class=Config):
         app.logger.info('Recipe Book startup')
 
     return app
+
+
+@babel.localeselector
+def get_locale():
+    return request.accept_languages.best_match(current_app.config['LANGUAGES'])
 
 
 from app import models

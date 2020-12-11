@@ -8,7 +8,7 @@
 
     <p class="recipe__dish-type"><b>Dish type:</b> {{ recipe.dish_type.name }}</p>
 
-    {% if recipe.image %}
+    {% if recipe.image[0].url != 'undefined' %}
     <div class="recipe__img-wrapper">
         <img src="{{ recipe.image[0].url }}" alt="{{ recipe.title }}" class="recipe__img">
     </div>

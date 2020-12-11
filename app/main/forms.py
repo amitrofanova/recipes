@@ -5,11 +5,12 @@ from wtforms.validators import ValidationError, DataRequired, Length, regexp
 from app.models import User
 from flask import request
 import os
+from flask_babel import lazy_gettext as _l
 
 
 class EditProfileForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    submit = SubmitField('Submit')
+    username = StringField(_l('Username'), validators=[DataRequired()])
+    submit = SubmitField(_l('Submit'))
 
     def __init__(self, original_username, *args, **kwargs):
         super(EditProfileForm, self).__init__(*args, **kwargs)
@@ -19,20 +20,17 @@ class EditProfileForm(FlaskForm):
         if username.data != self.original_username:
             user = User.query.filter_by(username=self.username.data).first()
             if user is not None:
-                raise ValidationError('Please use a different username.')
+                raise ValidationError(_l('Please use a different username.'))
 
 
 class NewRecipeForm(FlaskForm):
-    title = StringField('Title', validators=[DataRequired(), Length(min=1, max=140)])
-    description = TextAreaField('Description')
-    dish_type = SelectField('Dish type', coerce=int)
-    ingredients = TextAreaField('Add ingredients (please type every ingredient with new line)')
-    steps = TextAreaField('Add steps (please start to type every step from new line) ')
-    picture = FileField('Image File'
-                        # , validators=[regexp('^[^/\\]\.jpg$')]
-                        )
+    title = StringField(_l('Title'), validators=[DataRequired(), Length(min=1, max=140)])
+    description = TextAreaField(_l('Description'))
+    dish_type = SelectField(_l('Dish type'), coerce=int)
+    ingredients = TextAreaField(_l('Add ingredients (please type every ingredient with new line)'))
+    steps = TextAreaField(_l('Add steps (please start to type every step from new line)'))
     image_url = HiddenField('Image Url')
-    submit = SubmitField('Save recipe')
+    submit = SubmitField(_l('Save recipe'))
 
 
 class SearchRecipeForm(FlaskForm):

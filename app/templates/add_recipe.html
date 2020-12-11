@@ -2,9 +2,9 @@
 
 {% block content %}
     {% if "add_recipe" in request.path %}
-        <h1 class="page-title">Add new recipe</h1>
+        <h1 class="page-title">{{ _('Add new recipe') }}</h1>
     {% elif "modify_recipe" in request.path %}
-        <h1 class="page-title">Modify recipe</h1>
+        <h1 class="page-title">{{ _('Modify recipe') }}</h1>
     {% endif %}
 
     <form action="" method="post" enctype="multipart/form-data" id="addRecipeForm" name="addRecipeForm" class="form--big">
@@ -47,6 +47,7 @@
         {% endif %}
 
         <div class="btn btn--white file-input-wrapper">
+            <span>{{ _('Choose image') }}</span>
             <input type="file" name="fileSelect" id="fileSelect" value="" class="file-input">
         </div>
         <span id="fileName" class="file-name"></span>

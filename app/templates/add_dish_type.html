@@ -1,26 +1,26 @@
 {% extends "base.html" %}
 
 {% block content %}
-<main class="">
-    <div id="dish_types" class="">
-        <h1 class="">Current types:</h1>
-        <ul class="">
+<main>
+    <div id="dish_types">
+        <h1>{{ _('Current types:') }}</h1>
+        <ul>
         {% for type in types %}
             <li>{{ type.name }}</li>
         {% endfor %}
         </ul>
     </div>
 
-    <div class="">
-        <h1>Add new dish type</h1>
+    <div>
+        <h1>{{ _('Add new dish type') }}</h1>
         <form action="" method="post">
-        {{ form.hidden_tag() }}
+            {{ form.hidden_tag() }}
 
-        {{ form.dish_type.label }}<br>
-        {{ form.dish_type }}<br>
+            {{ form.dish_type.label }}<br>
+            {{ form.dish_type }}<br>
 
-        <p>{{ form.submit(class_="btn btn--orange") }}</p>
-    </form>
+            <p>{{ form.submit(class_="btn btn--orange") }}</p>
+        </form>
     </div>
 </main>
 {% endblock %}
