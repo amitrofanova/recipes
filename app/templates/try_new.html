@@ -10,7 +10,7 @@
                         <h1>{{ idea.title }}</h1>
                         <p>{{ idea.description }}</p>
                     </div>
-                    <button data-id="{{ idea.id }}" class="btn btn--orange">Delete idea</button>
+                    <button data-id="{{ idea.id }}" class="btn btn--orange">{{ _('Delete idea') }}</button>
                 </div>
             {% endfor %}
         </div>
@@ -18,7 +18,7 @@
 
         <div class="ideas__form">
             <form action="" method="post" class="form form--black">
-                <h1 class="form__title">Add new idea</h1>
+                <h1 class="form__title">{{ _('Add new idea') }}</h1>
                 {{ form.hidden_tag() }}
 
                 {{ form.title.label(class_="form__label") }}<br>

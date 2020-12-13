@@ -6,7 +6,7 @@
 
     <p class="recipe__description">{{ recipe.description }}</p>
 
-    <p class="recipe__dish-type"><b>Dish type:</b> {{ recipe.dish_type.name }}</p>
+    <p class="recipe__dish-type"><b>{{ _('Dish type:') }}</b> {{ recipe.dish_type.name }}</p>
 
     {% if recipe.image[0].url != 'undefined' %}
     <div class="recipe__img-wrapper">
@@ -15,7 +15,7 @@
     {% endif %}
 
     {% if recipe.ingredients %}
-    <h2>Ingredients:</h2>
+    <h2>{{ _('Ingredients:') }}</h2>
     <ul class="recipe__list">
         {% for i in recipe.ingredients %}
         <li>{{ i.name }}</li>
@@ -24,7 +24,7 @@
     {% endif %}
 
     {% if recipe.steps %}
-    <h2>Steps:</h2>
+    <h2>{{ _('Steps:') }}</h2>
     <ol class="recipe__list">
         {% for s in recipe.steps %}
         <li>{{ s.content }}</li>
@@ -32,6 +32,6 @@
     </ol>
     {% endif %}
 
-    <a href="{{ url_for('main.modify_recipe', search_string=recipe.title) }}" class="btn btn--orange">Modify recipe</a>
+    <a href="{{ url_for('main.modify_recipe', search_string=recipe.title) }}" class="btn btn--orange">{{ _('Modify recipe') }}</a>
 </main>
 {% endblock %}

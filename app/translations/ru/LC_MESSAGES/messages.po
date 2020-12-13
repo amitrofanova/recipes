@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-10 22:05+0500\n"
+"POT-Creation-Date: 2020-12-13 21:38+0500\n"
 "PO-Revision-Date: 2020-12-10 22:12+0500\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -25,7 +25,7 @@ msgstr "Пожалуйста авторизуйтесь, чтобы просма
 
 #: app/main/forms.py:12
 msgid "Username"
-msgstr "Имя пользователя"
+msgstr "Имя пользователя:"
 
 #: app/main/forms.py:13
 msgid "Submit"
@@ -35,15 +35,15 @@ msgstr "Сохранить"
 msgid "Please use a different username."
 msgstr "Пожалуйста выберите другое имя пользователя"
 
-#: app/main/forms.py:27
+#: app/main/forms.py:27 app/main/forms.py:48
 msgid "Title"
 msgstr "Название"
 
-#: app/main/forms.py:28
+#: app/main/forms.py:28 app/main/forms.py:49
 msgid "Description"
 msgstr "Описание"
 
-#: app/main/forms.py:29
+#: app/main/forms.py:29 app/main/forms.py:53
 msgid "Dish type"
 msgstr "Тип блюда"
 
@@ -55,19 +55,36 @@ msgstr "Добавьте ингредиенты (записывайте кажд
 msgid "Add steps (please start to type every step from new line)"
 msgstr "Добавьте шаги (записывайте каждый шаг с новой строки)"
 
-#: app/main/forms.py:32
-msgid "Image File"
-msgstr "Фото блюда"
-
-#: app/main/forms.py:36
+#: app/main/forms.py:33
 msgid "Save recipe"
 msgstr "Сохранить рецепт"
+
+#: app/main/forms.py:38
+msgid "Recipe name"
+msgstr "Название рецепта"
+
+#: app/main/forms.py:39
+msgid "Find recipe"
+msgstr "Найти"
+
+#: app/main/forms.py:44 app/templates/dashboard.html:18
+#: app/templates/delete_recipe.html:10
+msgid "Delete recipe"
+msgstr "Удалить"
+
+#: app/main/forms.py:50
+msgid "Add idea"
+msgstr "Добавить"
+
+#: app/main/forms.py:54
+msgid "Add dish type"
+msgstr "Добавить"
 
 #: app/templates/add_dish_type.html:6
 msgid "Current types:"
 msgstr "Сохраненные типы:"
 
-#: app/templates/add_dish_type.html:15
+#: app/templates/add_dish_type.html:15 app/templates/dashboard.html:25
 msgid "Add new dish type"
 msgstr "Добавить новый тип блюд"
 
@@ -75,9 +92,87 @@ msgstr "Добавить новый тип блюд"
 msgid "Add new recipe"
 msgstr "Новый рецепт"
 
-#: app/templates/add_recipe.html:7
+#: app/templates/add_recipe.html:7 app/templates/dashboard.html:9
+#: app/templates/recipe.html:35
 msgid "Modify recipe"
 msgstr "Редактирование рецепта"
+
+#: app/templates/add_recipe.html:50
+msgid "Choose image"
+msgstr "Добавить фото"
+
+#: app/templates/base.html:28 app/templates/base.html:48
+msgid "Home"
+msgstr "Главная"
+
+#: app/templates/base.html:29 app/templates/base.html:49
+#: app/templates/index.html:11
+msgid "All recipes"
+msgstr "Все рецепты"
+
+#: app/templates/base.html:30 app/templates/base.html:50
+msgid "Ideas"
+msgstr "Идеи"
+
+#: app/templates/base.html:31 app/templates/base.html:53
+msgid "Add recipe"
+msgstr "Новый рецепт"
+
+#: app/templates/base.html:32 app/templates/base.html:54
+msgid "Dashboard"
+msgstr "Панель управления"
+
+#: app/templates/base.html:34 app/templates/base.html:56
+msgid "Profile"
+msgstr "Профиль"
+
+#: app/templates/base.html:36 app/templates/base.html:58
+msgid "Logout"
+msgstr "Выйти"
+
+#: app/templates/base.html:45
+msgid "Login"
+msgstr "Войти"
+
+#: app/templates/delete_recipe.html:13
+msgid "Title:"
+msgstr "Название:"
+
+#: app/templates/delete_recipe.html:14 app/templates/recipe.html:9
+msgid "Dish type:"
+msgstr "Тип блюда:"
+
+#: app/templates/delete_recipe.html:16
+msgid "Description:"
+msgstr "Описание:"
+
+#: app/templates/edit_profile.html:4
+msgid "Edit Profile"
+msgstr "Редактировать профиль"
+
+#: app/templates/recipe.html:18
+msgid "Ingredients:"
+msgstr "Ингредиенты"
+
+#: app/templates/recipe.html:27
+msgid "Steps:"
+msgstr "Как готовить"
+
+#: app/templates/try_new.html:13
+msgid "Delete idea"
+msgstr "Удалить"
+
+#: app/templates/try_new.html:21
+msgid "Add new idea"
+msgstr "Добавить идею"
+
+#: app/templates/user.html:4
+msgid "User:"
+msgstr "Имя пользователя:"
+
+#: app/templates/user.html:6
+msgid "Edit your profile"
+msgstr "Изменить имя"
 
 #: app/templates/errors/404.html:4
 msgid "File Not Found"

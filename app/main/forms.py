@@ -35,20 +35,20 @@ class NewRecipeForm(FlaskForm):
 
 class SearchRecipeForm(FlaskForm):
     form_name = HiddenField('Form_name')
-    recipe_name = SearchField('Recipe name')
-    submit = SubmitField('Find recipe')
+    recipe_name = SearchField(_l('Recipe name'))
+    submit = SubmitField(_l('Find recipe'))
 
 
 class DeleteRecipeForm(FlaskForm):
     form_id = HiddenField('Form_id')
-    submit = SubmitField('Delete recipe')
+    submit = SubmitField(_l('Delete recipe'))
 
 
 class AddIdeaForm(FlaskForm):
-    title = StringField('Title', validators=[DataRequired(), Length(min=1, max=140)])
-    description = TextAreaField('Description')
-    submit = SubmitField('Add idea')
+    title = StringField(_l('Title', validators=[DataRequired(), Length(min=1, max=140)]))
+    description = TextAreaField(_l('Description'))
+    submit = SubmitField(_l('Add idea'))
 
 class AddDishTypeForm(FlaskForm):
-    dish_type = StringField('Dish type', validators=[DataRequired(), Length(min=1, max=140)])
-    submit = SubmitField('Add dish type')
+    dish_type = StringField(_l('Dish type', validators=[DataRequired(), Length(min=1, max=140)]))
+    submit = SubmitField(_l('Add dish type'))
