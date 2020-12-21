@@ -24,7 +24,7 @@
             {% if not current_user.is_anonymous %}
             <div class="header__toggler toggler toggler_open" id="headerToggler"></div>
 
-            <div class="nav container hidden" id="mobileNav">
+            <nav class="nav container hidden" id="mobileNav">
                 <a href="{{ url_for('main.index') }}" class="nav__item">{{ _('Home') }}</a>
                 <a href="{{ url_for('main.recipes') }}" class="nav__item">{{ _('All recipes') }}</a>
                 <a href="{{ url_for('main.try_new') }}" class="nav__item">{{ _('Ideas') }}</a>
@@ -34,13 +34,13 @@
                     {{ _('Profile') }}
                 </a>
                 <a href="{{ url_for('auth.logout') }}" class="nav__item">{{ _('Logout') }}</a>
-            </div>
+            </nav>
             {% endif %}
         </header>
 
         <header class="header desktop">
             <a href="{{ url_for('main.index') }}" class="logo header__logo">Recipe Book</a>
-            <div class="nav container">
+            <nav class="nav container">
             {% if current_user.is_anonymous %}
                 <a class="nav__item" href="{{ url_for('auth.login') }}">{{ _('Login') }}</a>
             {% else %}
@@ -58,7 +58,7 @@
                     <a href="{{ url_for('auth.logout') }}" class="nav__item">{{ _('Logout') }}</a>
                 </div>
             {% endif %}
-            </div>
+            </nav>
         </header>
 
         {% with messages = get_flashed_messages() %}
