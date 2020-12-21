@@ -204,25 +204,25 @@ def modify_recipe(search_string):
                 image = RecipeImage(recipe_id=recipe.id, url=image_url)
                 db.session.add(image)
 
-            ingredients = []
-            lines = form.ingredients.data.splitlines()
-            for line in lines:
-                line = line.strip()
-                if line != '':
-                    ingredients.append(line)
-            for i in ingredients:
-                ingredient = Ingredient(name=i, recipe=recipe)
-                db.session.add(ingredient)
+        ingredients = []
+        lines = form.ingredients.data.splitlines()
+        for line in lines:
+            line = line.strip()
+            if line != '':
+                ingredients.append(line)
+        for i in ingredients:
+            ingredient = Ingredient(name=i, recipe=recipe)
+            db.session.add(ingredient)
 
-            steps = []
-            lines = form.steps.data.splitlines()
-            for line in lines:
-                line = line.strip()
-                if line != '':
-                    steps.append(line)
-            for i in steps:
-                step = Step(content=i, recipe=recipe)
-                db.session.add(step)
+        steps = []
+        lines = form.steps.data.splitlines()
+        for line in lines:
+            line = line.strip()
+            if line != '':
+                steps.append(line)
+        for i in steps:
+            step = Step(content=i, recipe=recipe)
+            db.session.add(step)
 
         db.session.commit()
         flash('Changes have been saved!')
