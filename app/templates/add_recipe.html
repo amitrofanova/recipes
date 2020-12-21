@@ -47,7 +47,11 @@
         {% endif %}
 
         <div class="btn btn--white file-input-wrapper">
+            {% if "modify_recipe" in request.path %}
+            <span>{{ _('Change image') }}</span>
+            {% else %}
             <span>{{ _('Choose image') }}</span>
+            {% endif %}
             <input type="file" name="fileSelect" id="fileSelect" value="" class="file-input">
         </div>
         <span id="fileName" class="file-name"></span>
