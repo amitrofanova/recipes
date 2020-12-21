@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-13 21:38+0500\n"
+"POT-Creation-Date: 2020-12-21 17:34+0500\n"
 "PO-Revision-Date: 2020-12-10 22:12+0500\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -93,11 +93,15 @@ msgid "Add new recipe"
 msgstr "Новый рецепт"
 
 #: app/templates/add_recipe.html:7 app/templates/dashboard.html:9
-#: app/templates/recipe.html:35
+#: app/templates/recipe.html:41
 msgid "Modify recipe"
-msgstr "Редактирование рецепта"
+msgstr "Редактировать"
 
-#: app/templates/add_recipe.html:50
+#: app/templates/add_recipe.html:51
+msgid "Change image"
+msgstr "Изменить фото"
+
+#: app/templates/add_recipe.html:53
 msgid "Choose image"
 msgstr "Добавить фото"
 
@@ -116,7 +120,7 @@ msgstr "Идеи"
 
 #: app/templates/base.html:31 app/templates/base.html:53
 msgid "Add recipe"
-msgstr "Новый рецепт"
+msgstr "Добавить рецепт"
 
 #: app/templates/base.html:32 app/templates/base.html:54
 msgid "Dashboard"
@@ -134,15 +138,15 @@ msgstr "Выйти"
 msgid "Login"
 msgstr "Войти"
 
-#: app/templates/delete_recipe.html:13
+#: app/templates/delete_recipe.html:12
 msgid "Title:"
 msgstr "Название:"
 
-#: app/templates/delete_recipe.html:14 app/templates/recipe.html:9
+#: app/templates/delete_recipe.html:13 app/templates/recipe.html:10
 msgid "Dish type:"
 msgstr "Тип блюда:"
 
-#: app/templates/delete_recipe.html:16
+#: app/templates/delete_recipe.html:15
 msgid "Description:"
 msgstr "Описание:"
 
@@ -150,11 +154,11 @@ msgstr "Описание:"
 msgid "Edit Profile"
 msgstr "Редактировать профиль"
 
-#: app/templates/recipe.html:18
+#: app/templates/recipe.html:13
 msgid "Ingredients:"
 msgstr "Ингредиенты"
 
-#: app/templates/recipe.html:27
+#: app/templates/recipe.html:30
 msgid "Steps:"
 msgstr "Как готовить"
 
