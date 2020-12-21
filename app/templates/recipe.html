@@ -2,11 +2,22 @@
 
 {% block content %}
 <main class="recipe">
-    <h1 class="recipe__title">{{ recipe.title }}</h1>
+    <div class="recipe__content-wrapper">
+        <h1 class="recipe__title">{{ recipe.title }}</h1>
 
-    <p class="recipe__description">{{ recipe.description }}</p>
+        <p class="recipe__description">{{ recipe.description }}</p>
 
-    <p class="recipe__dish-type"><b>{{ _('Dish type:') }}</b> {{ recipe.dish_type.name }}</p>
+<!--        <p class="recipe__dish-type"><b>{{ _('Dish type:') }}</b> {{ recipe.dish_type.name }}</p>-->
+
+        {% if recipe.ingredients %}
+        <h2 class="recipe__subtitle">{{ _('Ingredients:') }}</h2>
+        <ul class="recipe__list">
+            {% for i in recipe.ingredients %}
+            <li>{{ i.name }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
 
     {% if recipe.image[0].url != 'undefined' %}
     <div class="recipe__img-wrapper">
@@ -14,24 +25,22 @@
     </div>
     {% endif %}
 
-    {% if recipe.ingredients %}
-    <h2>{{ _('Ingredients:') }}</h2>
-    <ul class="recipe__list">
-        {% for i in recipe.ingredients %}
-        <li>{{ i.name }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-
     {% if recipe.steps %}
-    <h2>{{ _('Steps:') }}</h2>
-    <ol class="recipe__list">
-        {% for s in recipe.steps %}
-        <li>{{ s.content }}</li>
-        {% endfor %}
-    </ol>
+    <div class="recipe__steps-wrapper">
+        <h2 class="recipe__subtitle">{{ _('Steps:') }}</h2>
+        <ol class="recipe__list">
+            {% for s in recipe.steps %}
+            <li>{{ s.content }}</li>
+            {% endfor %}
+        </ol>
+    </div>
     {% endif %}
 
-    <a href="{{ url_for('main.modify_recipe', search_string=recipe.title) }}" class="btn btn--orange">{{ _('Modify recipe') }}</a>
+    <div class="recipe__link-wrapper">
+        <a href="{{ url_for('main.modify_recipe', search_string=recipe.title) }}" class="btn btn--orange">
+            {{ _('Modify recipe') }}
+        </a>
+    </div>
+
 </main>
 {% endblock %}
