@@ -9,6 +9,12 @@
 
 <!--        <p class="recipe__dish-type"><b>{{ _('Dish type:') }}</b> {{ recipe.dish_type.name }}</p>-->
 
+        {% if recipe.image[0].url != 'undefined' %}
+        <div class="recipe__img-wrapper mobile">
+            <img src="{{ recipe.image[0].url }}" alt="{{ recipe.title }}" class="recipe__img">
+        </div>
+        {% endif %}
+
         {% if recipe.ingredients %}
         <h2 class="recipe__subtitle">{{ _('Ingredients:') }}</h2>
         <ul class="recipe__list">
@@ -20,7 +26,7 @@
     </div>
 
     {% if recipe.image[0].url != 'undefined' %}
-    <div class="recipe__img-wrapper">
+    <div class="recipe__img-wrapper desktop">
         <img src="{{ recipe.image[0].url }}" alt="{{ recipe.title }}" class="recipe__img">
     </div>
     {% endif %}
