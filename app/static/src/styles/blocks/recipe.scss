@@ -17,6 +17,9 @@
 .recipe__list {
     margin-bottom: 40px;
     padding-left: var(--indent-size);
+    li {
+        padding-bottom: var(--indent-size);
+    }
 }
 
 @media (min-width:768px) {

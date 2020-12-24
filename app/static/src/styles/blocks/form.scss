@@ -63,6 +63,10 @@
     .form label, input, fieldset {
         font-size: 1em;
     }
+
+    .form label {
+        line-height: 2;
+    }
 }
 
 //@media (min-width:1000px) {
