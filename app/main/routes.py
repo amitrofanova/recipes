@@ -1,11 +1,10 @@
-from flask import render_template, flash, redirect, url_for, request, send_from_directory
-from flask_login import current_user, login_required
+from flask import render_template, flash, redirect, url_for, request, send_from_directory, abort
+from flask_login import current_user, login_required, login_user
 from app import db
 from app.main.forms import EditProfileForm, NewRecipeForm, SearchRecipeForm, DeleteRecipeForm, AddIdeaForm, \
     AddDishTypeForm
 from app.models import User, Recipe, DishType, Ingredient, Step, Idea, RecipeImage
 from app.main import bp
-import re
 import os
 
 
@@ -13,6 +12,10 @@ import os
 @bp.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():
+    return show_index()
+
+
+def show_index():
     recipes = current_user.recipes
     type_ids = []
     types = []
@@ -24,6 +27,16 @@ def index():
             types.append(type)
 
     return render_template('index.html', title='Home', dish_types=types)
+
+
+@bp.route('/demo', methods=['GET'])
+def demo_index():
+    user = User.query.filter_by(username='demo').first()
+    if user is None:
+        abort(401)
+
+    login_user(user, remember=True)
+    return show_index()
 
 
 @bp.route('/user/<username>')
