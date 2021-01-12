@@ -12,7 +12,6 @@
     background-image: url('https://res.cloudinary.com/dzhpku2a7/image/upload/v1604934494/helpers/bg.png');
     background-size: cover;
     background-position-y: center;
-    // margin-top: 15px;
     text-align: center;
     z-index: 1;
 }
@@ -31,7 +30,7 @@
     }
 
     .dish-type-preview__title {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
     }
 
     .dish-type-preview:hover {
@@ -43,3 +42,9 @@
         }
     }
 }
+
+//@media (min-width:1200px) {
+//    .dish-type-preview__title {
+//        font-size: 1.8rem;
+//    }
+//}

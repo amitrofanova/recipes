@@ -17,9 +17,6 @@
 .recipe__list {
     margin-bottom: 40px;
     padding-left: var(--indent-size);
-    li {
-        padding-bottom: var(--indent-size);
-    }
 }
 
 @media (min-width:768px) {
@@ -53,7 +50,14 @@
 
     .recipe__list {
         margin: 0;
+        li {
+            padding-bottom: var(--indent-size);
+        }
     }
+
+    //.recipe__list li {
+    //    padding-bottom: var(--indent-size);
+    //}
 
     .recipe__img-wrapper {
         flex-basis: 50%;

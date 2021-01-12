@@ -82,13 +82,13 @@ a {
 }
 
 .mobile {
-    @media (min-width:600px) {
+    @media (min-width:768px) {
         display: none !important;
     }
 }
 
 .desktop {
-    @media (max-width:599px) {
+    @media (max-width:767px) {
         display: none !important;
     }
 }

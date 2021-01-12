@@ -16,18 +16,26 @@
     text-decoration: underline;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 340px) {
+    .dashboard__form {
+        margin: 10px 0;
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) {
     .dashboard {
         flex-direction: row;
         flex-wrap: wrap;
     }
 
     .dashboard__form {
-        margin: 25px 0;
+        margin: 25px 10px;
         max-width: 350px;
     }
 
     .dashboard__link {
+        margin: 25px 10px;
         font-size: 2vw;
     }
 
